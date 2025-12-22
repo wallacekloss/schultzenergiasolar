@@ -1,4 +1,5 @@
-import { Sun, Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Facebook, Linkedin, Youtube } from "lucide-react";
+import logoSchultz from "@/assets/logo-schultz.png";
 
 const footerLinks = {
   empresa: [
@@ -69,16 +70,12 @@ export function Footer() {
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <a href="#inicio" className="flex items-center gap-2 mb-6">
-              <Sun className="h-8 w-8 text-primary" />
-              <div>
-                <span className="font-display font-bold text-lg text-white">
-                  SCHULTZ
-                </span>
-                <span className="block text-xs font-medium text-white/60 tracking-wider">
-                  ENERGIA SOLAR
-                </span>
-              </div>
+            <a href="#inicio" className="flex items-center mb-6">
+              <img 
+                src={logoSchultz} 
+                alt="Schultz Energia Solar" 
+                className="h-14 w-auto brightness-0 invert"
+              />
             </a>
             <p className="text-white/60 mb-6 max-w-sm">
               Especialistas em energia solar fotovoltaica. Transformando a luz 
