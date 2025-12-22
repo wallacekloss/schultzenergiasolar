@@ -1,13 +1,6 @@
-import { ArrowRight, Zap, TrendingDown, Shield, CheckCircle } from "lucide-react";
+import { ArrowRight, Zap, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-solar.jpg";
-
-const stats = [
-  { value: "500+", label: "Projetos Realizados" },
-  { value: "95%", label: "Economia na Conta" },
-  { value: "25", label: "Anos de Garantia" },
-  { value: "4.9", label: "Avaliação Google" },
-];
 
 export function HeroSection() {
   return (
@@ -97,21 +90,6 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* Stats Bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white/10 backdrop-blur-md border-t border-white/10">
-          <div className="container-max mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-display text-3xl md:text-4xl font-bold text-white mb-1">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm text-white/70">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
