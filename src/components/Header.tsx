@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sun, Phone } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoSchultz from "@/assets/logo-schultz.png";
 
 const navLinks = [
   { href: "#inicio", label: "Início" },
@@ -37,18 +38,12 @@ export function Header() {
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <Sun className="h-8 w-8 text-primary" />
-              <div className="flex flex-col">
-                <span className="font-display font-bold text-lg leading-tight text-secondary">
-                  SCHULTZ
-                </span>
-                <span className="text-xs font-medium text-muted-foreground tracking-wider">
-                  ENERGIA SOLAR
-                </span>
-              </div>
-            </div>
+          <a href="#inicio" className="flex items-center">
+            <img 
+              src={logoSchultz} 
+              alt="Schultz Energia Solar" 
+              className="h-12 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
