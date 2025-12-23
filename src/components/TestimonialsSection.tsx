@@ -1,35 +1,35 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 const testimonials = [{
-  name: "Carlos Eduardo Silva",
-  location: "São Paulo, SP",
+  name: "Renan Marques",
+  location: "Bebedouro, Linhares – ES",
   rating: 5,
-  text: "Minha conta de luz era de R$ 800, agora pago apenas R$ 60! A equipe da Schultz foi extremamente profissional e o sistema foi instalado em apenas 2 dias.",
-  image: "CE"
+  text: "Enfim encontrei o cara certo da energia solar. Depois de adquirir 2 instalações de empresas diferentes e ser abandonado por elas, o Wallace veio instalar a terceira e ainda assumiu o cuidado das outras duas de forma estupenda. Hoje minhas instalações antigas têm acompanhamento por Wi-Fi, algo que eu havia contratado antes, mas não tinham me entregado. Sem falar na qualidade dos produtos e no preço: paguei menos e o sistema dele gera muito mais do que os outros, mesmo com o mesmo kWh contratado.",
+  image: "RM"
 }, {
-  name: "Maria Fernanda Costa",
-  location: "Campinas, SP",
+  name: "Jean Moreira",
+  location: "Bebedouro, Linhares – ES",
   rating: 5,
-  text: "Investimento que se pagou em 3 anos. Hoje economizo mais de R$ 1.000 por mês. Atendimento impecável do início ao fim!",
-  image: "MF"
-}, {
-  name: "Roberto Almeida",
-  location: "Ribeirão Preto, SP",
-  rating: 5,
-  text: "Minha empresa reduziu 95% dos custos com energia. A Schultz cuidou de tudo, desde o projeto até a homologação. Recomendo fortemente!",
-  image: "RA"
-}, {
-  name: "Ana Paula Santos",
-  location: "Sorocaba, SP",
-  rating: 5,
-  text: "Fiquei impressionada com a qualidade dos equipamentos e a rapidez da instalação. O monitoramento pelo app é fantástico!",
-  image: "AP"
-}, {
-  name: "João Marcos Oliveira",
-  location: "Bauru, SP",
-  rating: 5,
-  text: "Depois de muito pesquisar, escolhi a Schultz pelo profissionalismo. Não me arrependo! Economia real e suporte excelente.",
+  text: "Fui muito bem atendido! O Wallace tem conhecimento técnico, atende com rapidez, tem preço e qualidade. Meu serviço foi executado com excelência, minha casa foi entregue limpa e organizada. É um profissional acima da média. Realizou instalação elétrica predial, instalação do sistema fotovoltaico e outros serviços. Vou contratar sempre para minhas obras. Sem contar a parte pessoal: acabei fazendo um amigo. Podem contratar e confirmar tudo o que estou relatando.",
   image: "JM"
+}, {
+  name: "Amilar Rangel",
+  location: "Três Barras, Linhares – ES",
+  rating: 5,
+  text: "Desde o primeiro contato fui muito bem atendido. O Wallace demonstrou total domínio técnico, esclareceu todas as dúvidas e apresentou a melhor solução para o meu caso. A instalação foi feita com cuidado, organização e dentro do prazo. O sistema está funcionando perfeitamente e a economia na conta de energia já é visível. Profissional sério, competente e de total confiança.",
+  image: "AR"
+}, {
+  name: "Hoechst Brito Dias",
+  location: "São José, Linhares – ES",
+  rating: 5,
+  text: "Serviço de altíssimo nível. A Schultz Energia Solar entregou exatamente o que foi prometido, com transparência, qualidade nos equipamentos e excelente execução. O Wallace acompanha todo o processo, explica cada etapa e transmite muita segurança. A instalação ficou impecável e o desempenho do sistema superou minhas expectativas. Empresa e profissional acima da média.",
+  image: "HB"
+}, {
+  name: "Odirley Santos",
+  location: "Planalto, Linhares – ES",
+  rating: 5,
+  text: "Excelente atendimento do início ao fim. A equipe da Schultz Energia Solar foi muito profissional, explicou todo o processo com clareza e cumpriu os prazos combinados. A instalação ficou impecável e já estou sentindo a economia na conta de energia. Recomendo com total confiança.",
+  image: "OS"
 }];
 export function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
