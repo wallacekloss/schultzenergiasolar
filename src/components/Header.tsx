@@ -35,9 +35,9 @@ export function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  return <header className={cn("fixed top-0 left-0 right-0 z-50 transition-all duration-300", isScrolled ? "bg-background/95 backdrop-blur-lg shadow-soft" : "bg-transparent")}>
-      <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+  return <header className="">
+      <div className="container-max mx-auto px-4 sm:px-6 lg:px-8 bg-primary-foreground">
+        <div className="flex items-center justify-between h-20 bg-white">
           {/* Logo */}
           <a href="#inicio" className="flex items-center">
             <img src={logoSchultz} alt="Schultz Energia Solar" className="h-12 w-auto" />
