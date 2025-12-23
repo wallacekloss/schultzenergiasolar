@@ -106,16 +106,16 @@ export function TestimonialsSection() {
         <div className="mt-16 flex flex-wrap justify-center items-center gap-8 text-muted-foreground">
           <div className="flex items-center gap-2">
             <Star className="h-5 w-5 fill-primary text-primary" />
-            <span className="font-semibold">4.9/5</span>
+            <span className="font-semibold">5/5</span>
             <span>no Google</span>
           </div>
           <div className="h-6 w-px bg-border" />
           <div>
-            <span className="font-semibold">500+</span> clientes satisfeitos
+            <span className="font-semibold">150+</span> clientes satisfeitos
           </div>
           <div className="h-6 w-px bg-border" />
           <div>
-            <span className="font-semibold">10+</span> anos de experiência
+            <span className="font-semibold">2+</span> anos de experiência
           </div>
         </div>
       </div>

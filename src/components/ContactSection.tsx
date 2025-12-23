@@ -2,23 +2,19 @@ import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: "",
+    message: ""
   });
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Olá! Gostaria de mais informações sobre energia solar.\n\nNome: ${formData.name}\nE-mail: ${formData.email}\nTelefone: ${formData.phone}\nMensagem: ${formData.message}`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
-
-  return (
-    <section id="contato" className="section-padding bg-muted/50">
+  return <section id="contato" className="section-padding bg-muted/50">
       <div className="container-max mx-auto">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -86,11 +82,7 @@ export function ContactSection() {
             {/* WhatsApp CTA */}
             <div className="mt-10">
               <Button variant="whatsapp" size="lg" className="w-full sm:w-auto" asChild>
-                <a
-                  href="https://wa.me/5527998200026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://wa.me/5527998200026" target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="h-5 w-5" />
                   Chamar no WhatsApp
                 </a>
@@ -106,57 +98,44 @@ export function ContactSection() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">
+                <label className="block text-sm text-secondary mb-2 font-semibold">
                   Nome completo
                 </label>
-                <Input
-                  type="text"
-                  placeholder="Seu nome"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  required
-                />
+                <Input type="text" placeholder="Seu nome" value={formData.name} onChange={e => setFormData({
+                ...formData,
+                name: e.target.value
+              })} required />
               </div>
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-2">
+                  <label className="block text-sm text-secondary mb-2 font-semibold">
                     E-mail
                   </label>
-                  <Input
-                    type="email"
-                    placeholder="seu@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
+                  <Input type="email" placeholder="seu@email.com" value={formData.email} onChange={e => setFormData({
+                  ...formData,
+                  email: e.target.value
+                })} required />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-2">
+                  <label className="block text-sm text-secondary mb-2 font-semibold">
                     Telefone
                   </label>
-                  <Input
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    required
-                  />
+                  <Input type="tel" placeholder="(00) 00000-0000" value={formData.phone} onChange={e => setFormData({
+                  ...formData,
+                  phone: e.target.value
+                })} required />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">
+                <label className="block text-sm text-secondary mb-2 font-semibold">
                   Mensagem
                 </label>
-                <textarea
-                  rows={4}
-                  placeholder="Como podemos ajudar?"
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="flex w-full rounded-lg border-2 border-border bg-background px-4 py-3 text-base placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:border-primary transition-all duration-200 resize-none"
-                  required
-                />
+                <textarea rows={4} placeholder="Como podemos ajudar?" value={formData.message} onChange={e => setFormData({
+                ...formData,
+                message: e.target.value
+              })} className="flex w-full rounded-lg border-2 border-border bg-background px-4 py-3 text-base placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:border-primary transition-all duration-200 resize-none" required />
               </div>
 
               <Button variant="default" size="lg" className="w-full" type="submit">
@@ -167,6 +146,5 @@ export function ContactSection() {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
