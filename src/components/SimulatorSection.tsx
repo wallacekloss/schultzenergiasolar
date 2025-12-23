@@ -2,40 +2,36 @@ import { useState } from "react";
 import { Calculator, ArrowRight, Zap, TrendingUp, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 type PropertyType = "residencial" | "comercial";
-
 export function SimulatorSection() {
   const [billValue, setBillValue] = useState("");
   const [propertyType, setPropertyType] = useState<PropertyType>("residencial");
   const [showResults, setShowResults] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
-  const [leadData, setLeadData] = useState({ name: "", whatsapp: "", city: "" });
-
+  const [leadData, setLeadData] = useState({
+    name: "",
+    whatsapp: "",
+    city: ""
+  });
   const billNumber = parseFloat(billValue) || 0;
   const savingsPercentage = propertyType === "residencial" ? 0.92 : 0.95;
   const monthlySavings = billNumber * savingsPercentage;
   const yearlySavings = monthlySavings * 12;
   const paybackMonths = propertyType === "residencial" ? 36 : 24;
-
   const handleCalculate = () => {
     if (billNumber >= 200) {
       setShowResults(true);
     }
   };
-
   const handleGetQuote = () => {
     setShowLeadForm(true);
   };
-
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
-
-  return (
-    <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
+  return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl" />
@@ -57,25 +53,18 @@ export function SimulatorSection() {
             </p>
 
             <div className="space-y-4 text-white/80">
-              {[
-                "Cálculo instantâneo e personalizado",
-                "Estimativa de retorno do investimento",
-                "Sem compromisso - totalmente gratuito",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
+              {["Cálculo instantâneo e personalizado", "Estimativa de retorno do investimento", "Sem compromisso - totalmente gratuito"].map(item => <div key={item} className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                     <Zap className="h-3 w-3 text-white" />
                   </div>
                   <span>{item}</span>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
           {/* Right - Calculator Card */}
           <div className="bg-white rounded-3xl p-8 shadow-medium">
-            {!showLeadForm ? (
-              <>
+            {!showLeadForm ? <>
                 <div className="flex items-center gap-3 mb-8">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                     <Calculator className="h-6 w-6 text-primary" />
@@ -93,19 +82,13 @@ export function SimulatorSection() {
                 {/* Form */}
                 <div className="space-y-6">
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-2">
+                    <label className="block text-sm text-secondary mb-2 font-semibold">
                       Valor médio da conta de luz (R$)
                     </label>
-                    <Input
-                      type="number"
-                      placeholder="Ex: 500"
-                      value={billValue}
-                      onChange={(e) => {
-                        setBillValue(e.target.value);
-                        setShowResults(false);
-                      }}
-                      min="200"
-                    />
+                    <Input type="number" placeholder="Ex: 500" value={billValue} onChange={e => {
+                  setBillValue(e.target.value);
+                  setShowResults(false);
+                }} min="200" />
                     <p className="text-xs text-muted-foreground mt-1">
                       Valor mínimo: R$ 200,00
                     </p>
@@ -116,38 +99,19 @@ export function SimulatorSection() {
                       Tipo de imóvel
                     </label>
                     <div className="grid grid-cols-2 gap-4">
-                      {(["residencial", "comercial"] as PropertyType[]).map((type) => (
-                        <button
-                          key={type}
-                          onClick={() => {
-                            setPropertyType(type);
-                            setShowResults(false);
-                          }}
-                          className={`py-3 px-4 rounded-lg border-2 font-medium transition-all ${
-                            propertyType === type
-                              ? "border-primary bg-primary/5 text-primary"
-                              : "border-border text-muted-foreground hover:border-primary/50"
-                          }`}
-                        >
+                      {(["residencial", "comercial"] as PropertyType[]).map(type => <button key={type} onClick={() => {
+                    setPropertyType(type);
+                    setShowResults(false);
+                  }} className={`py-3 px-4 rounded-lg border-2 font-medium transition-all ${propertyType === type ? "border-primary bg-primary/5 text-primary" : "border-border text-muted-foreground hover:border-primary/50"}`}>
                           {type === "residencial" ? "Residencial" : "Comercial"}
-                        </button>
-                      ))}
+                        </button>)}
                     </div>
                   </div>
 
-                  {!showResults ? (
-                    <Button
-                      variant="default"
-                      size="lg"
-                      className="w-full"
-                      onClick={handleCalculate}
-                      disabled={billNumber < 200}
-                    >
+                  {!showResults ? <Button variant="default" size="lg" className="w-full" onClick={handleCalculate} disabled={billNumber < 200}>
                       Calcular Economia
                       <ArrowRight className="h-5 w-5" />
-                    </Button>
-                  ) : (
-                    <>
+                    </Button> : <>
                       {/* Results */}
                       <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
                         <div className="flex items-center justify-between">
@@ -179,22 +143,14 @@ export function SimulatorSection() {
                         </div>
                       </div>
 
-                      <Button
-                        variant="cta"
-                        size="lg"
-                        className="w-full"
-                        onClick={handleGetQuote}
-                      >
+                      <Button variant="cta" size="lg" className="w-full" onClick={handleGetQuote}>
                         Quero Meu Orçamento Grátis
                         <ArrowRight className="h-5 w-5" />
                       </Button>
-                    </>
-                  )}
+                    </>}
                 </div>
-              </>
-            ) : (
-              /* Lead Form */
-              <form onSubmit={handleSubmitLead} className="space-y-6">
+              </> : (/* Lead Form */
+          <form onSubmit={handleSubmitLead} className="space-y-6">
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                     <Zap className="h-8 w-8 text-primary" />
@@ -211,39 +167,30 @@ export function SimulatorSection() {
                   <label className="block text-sm font-medium text-secondary mb-2">
                     Seu nome
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Nome completo"
-                    value={leadData.name}
-                    onChange={(e) => setLeadData({ ...leadData, name: e.target.value })}
-                    required
-                  />
+                  <Input type="text" placeholder="Nome completo" value={leadData.name} onChange={e => setLeadData({
+                ...leadData,
+                name: e.target.value
+              })} required />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-secondary mb-2">
                     WhatsApp
                   </label>
-                  <Input
-                    type="tel"
-                    placeholder="(00) 00000-0000"
-                    value={leadData.whatsapp}
-                    onChange={(e) => setLeadData({ ...leadData, whatsapp: e.target.value })}
-                    required
-                  />
+                  <Input type="tel" placeholder="(00) 00000-0000" value={leadData.whatsapp} onChange={e => setLeadData({
+                ...leadData,
+                whatsapp: e.target.value
+              })} required />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-secondary mb-2">
                     Cidade
                   </label>
-                  <Input
-                    type="text"
-                    placeholder="Sua cidade"
-                    value={leadData.city}
-                    onChange={(e) => setLeadData({ ...leadData, city: e.target.value })}
-                    required
-                  />
+                  <Input type="text" placeholder="Sua cidade" value={leadData.city} onChange={e => setLeadData({
+                ...leadData,
+                city: e.target.value
+              })} required />
                 </div>
 
                 <div className="bg-muted/50 rounded-xl p-4">
@@ -260,18 +207,12 @@ export function SimulatorSection() {
                   <ArrowRight className="h-5 w-5" />
                 </Button>
 
-                <button
-                  type="button"
-                  onClick={() => setShowLeadForm(false)}
-                  className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors"
-                >
+                <button type="button" onClick={() => setShowLeadForm(false)} className="w-full text-sm text-muted-foreground hover:text-foreground transition-colors">
                   ← Voltar ao simulador
                 </button>
-              </form>
-            )}
+              </form>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 }
