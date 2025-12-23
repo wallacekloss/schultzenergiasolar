@@ -69,7 +69,7 @@ export function Header() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={cn("lg:hidden absolute top-full left-0 right-0 bg-background/98 backdrop-blur-lg border-b border-border transition-all duration-300 overflow-hidden", isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0")}>
+      <div className={cn("lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden shadow-lg", isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0")}>
         <nav className="container-max mx-auto px-4 py-6 flex flex-col gap-4">
           {navLinks.map(link => <a key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2">
               {link.label}
