@@ -74,7 +74,7 @@ export function Footer() {
               <img 
                 src={logoSchultz} 
                 alt="Schultz Energia Solar" 
-                className="h-14 w-auto brightness-0 invert"
+                className="h-20 w-auto brightness-0 invert"
               />
             </a>
             <p className="text-white/60 mb-6 max-w-sm">
