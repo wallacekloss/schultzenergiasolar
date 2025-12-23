@@ -26,7 +26,7 @@ export function HeroSection() {
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-up">
             <Zap className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-white/90">
-              Líder em energia solar no Brasil
+              Líder em energia solar no Espírito Santo
             </span>
           </div>
 
@@ -47,7 +47,7 @@ export function HeroSection() {
           <div className="flex flex-wrap gap-4 mb-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             {[
               "Economia imediata",
-              "Payback em até 4 anos",
+              "Payback em até 2 anos",
               "25 anos de garantia",
             ].map((benefit) => (
               <div key={benefit} className="flex items-center gap-2 text-white/90">
@@ -85,7 +85,7 @@ export function HeroSection() {
               ))}
             </div>
             <p className="text-sm">
-              <span className="text-white font-semibold">+500 clientes</span> satisfeitos em todo o Brasil
+              <span className="text-white font-semibold">+150 clientes</span> satisfeitos em todo o Espírito Santo
             </p>
           </div>
         </div>

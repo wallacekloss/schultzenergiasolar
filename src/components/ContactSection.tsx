@@ -14,7 +14,7 @@ export function ContactSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Olá! Gostaria de mais informações sobre energia solar.\n\nNome: ${formData.name}\nE-mail: ${formData.email}\nTelefone: ${formData.phone}\nMensagem: ${formData.message}`;
-    window.open(`https://wa.me/5500000000000?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
@@ -47,9 +47,8 @@ export function ContactSection() {
                   <Phone className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-secondary mb-1">Telefone</h4>
-                  <p className="text-muted-foreground">(00) 0000-0000</p>
-                  <p className="text-muted-foreground">(00) 00000-0000 (WhatsApp)</p>
+                  <h4 className="font-semibold text-secondary mb-1">Telefone / WhatsApp</h4>
+                  <p className="text-muted-foreground">(27) 99820-0026</p>
                 </div>
               </div>
 
@@ -59,7 +58,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-secondary mb-1">E-mail</h4>
-                  <p className="text-muted-foreground">contato@schultzsolar.com.br</p>
+                  <p className="text-muted-foreground">contato@schultzenergiasolar.com.br</p>
                 </div>
               </div>
 
@@ -69,8 +68,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-secondary mb-1">Região de Atendimento</h4>
-                  <p className="text-muted-foreground">São Paulo e região metropolitana</p>
-                  <p className="text-muted-foreground">Interior de São Paulo</p>
+                  <p className="text-muted-foreground">Linhares e todo o Espírito Santo</p>
                 </div>
               </div>
 
@@ -80,8 +78,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-secondary mb-1">Horário de Atendimento</h4>
-                  <p className="text-muted-foreground">Segunda a Sexta: 8h às 18h</p>
-                  <p className="text-muted-foreground">Sábado: 8h às 12h</p>
+                  <p className="text-muted-foreground">Segunda a Sexta: 8h às 17h</p>
                 </div>
               </div>
             </div>
@@ -90,7 +87,7 @@ export function ContactSection() {
             <div className="mt-10">
               <Button variant="whatsapp" size="lg" className="w-full sm:w-auto" asChild>
                 <a
-                  href="https://wa.me/5500000000000"
+                  href="https://wa.me/5527998200026"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

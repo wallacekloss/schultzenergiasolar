@@ -52,7 +52,7 @@ export function AboutSection() {
               e atendimento para nossos clientes.
             </p>
             <p className="text-muted-foreground mb-8">
-              Com mais de 10 anos de experiência no mercado e mais de 500 
+              Com mais de 2 anos de experiência no mercado e mais de 150 
               projetos realizados, nos destacamos pela qualidade dos equipamentos, 
               pela excelência na instalação e pelo suporte completo ao cliente.
             </p>

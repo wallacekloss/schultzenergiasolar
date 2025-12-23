@@ -16,7 +16,7 @@ const footerLinks = {
   ],
   contato: [
     { label: "Fale Conosco", href: "#contato" },
-    { label: "WhatsApp", href: "https://wa.me/5500000000000" },
+    { label: "WhatsApp", href: "https://wa.me/5527998200026" },
     { label: "Simulador", href: "#simulador" },
     { label: "Orçamento", href: "#contato" },
   ],
@@ -53,7 +53,7 @@ export function Footer() {
                 Simular Economia
               </a>
               <a
-                href="https://wa.me/5500000000000"
+                href="https://wa.me/5527998200026"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-8 py-4 rounded-lg hover:bg-white/20 transition-colors border border-white/20"

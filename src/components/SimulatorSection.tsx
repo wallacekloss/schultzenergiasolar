@@ -16,7 +16,7 @@ export function SimulatorSection() {
   const savingsPercentage = propertyType === "residencial" ? 0.92 : 0.95;
   const monthlySavings = billNumber * savingsPercentage;
   const yearlySavings = monthlySavings * 12;
-  const paybackMonths = propertyType === "residencial" ? 42 : 36;
+  const paybackMonths = propertyType === "residencial" ? 36 : 24;
 
   const handleCalculate = () => {
     if (billNumber >= 200) {
@@ -31,7 +31,7 @@ export function SimulatorSection() {
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
-    window.open(`https://wa.me/5500000000000?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (

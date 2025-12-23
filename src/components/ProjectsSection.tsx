@@ -8,7 +8,7 @@ const projects = [
     id: 1,
     type: "residencial" as const,
     title: "Residência Premium",
-    location: "São Paulo, SP",
+    location: "Linhares, ES",
     power: "8.5 kWp",
     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop",
   },
@@ -16,7 +16,7 @@ const projects = [
     id: 2,
     type: "comercial" as const,
     title: "Empresa de Logística",
-    location: "Campinas, SP",
+    location: "Vitória, ES",
     power: "75 kWp",
     image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&h=400&fit=crop",
   },
@@ -24,15 +24,15 @@ const projects = [
     id: 3,
     type: "residencial" as const,
     title: "Casa de Campo",
-    location: "Ribeirão Preto, SP",
+    location: "Colatina, ES",
     power: "12 kWp",
     image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&h=400&fit=crop",
   },
   {
     id: 4,
     type: "comercial" as const,
-    title: "Shopping Center",
-    location: "Sorocaba, SP",
+    title: "Galpão Industrial",
+    location: "Serra, ES",
     power: "250 kWp",
     image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=600&h=400&fit=crop",
   },
@@ -40,15 +40,15 @@ const projects = [
     id: 5,
     type: "residencial" as const,
     title: "Condomínio Fechado",
-    location: "Bauru, SP",
+    location: "Aracruz, ES",
     power: "15 kWp",
     image: "https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&h=400&fit=crop",
   },
   {
     id: 6,
     type: "comercial" as const,
-    title: "Indústria Têxtil",
-    location: "Americana, SP",
+    title: "Centro Comercial",
+    location: "Cachoeiro de Itapemirim, ES",
     power: "180 kWp",
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop",
   },
@@ -79,8 +79,8 @@ export function ProjectsSection() {
             Projetos realizados
           </h2>
           <p className="text-lg text-muted-foreground">
-            Conheça alguns dos mais de 500 projetos que já realizamos em 
-            residências e empresas de todo o Brasil.
+            Conheça alguns dos mais de 150 projetos que já realizamos em 
+            residências e empresas de todo o Espírito Santo.
           </p>
         </div>
 

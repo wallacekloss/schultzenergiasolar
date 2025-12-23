@@ -61,9 +61,9 @@ export function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+5500000000000" className="flex items-center gap-2 text-sm font-medium text-foreground/80">
+            <a href="tel:+5527998200026" className="flex items-center gap-2 text-sm font-medium text-foreground/80">
               <Phone className="h-4 w-4" />
-              (00) 0000-0000
+              (27) 99820-0026
             </a>
             <Button variant="default" size="default" asChild>
               <a href="#simulador">Simular Economia</a>
