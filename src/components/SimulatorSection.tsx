@@ -95,7 +95,7 @@ export function SimulatorSection() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-2">
+                    <label className="block text-sm text-secondary mb-2 font-semibold">
                       Tipo de imóvel
                     </label>
                     <div className="grid grid-cols-2 gap-4">
