@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { MapPin, Zap, Home, Building2 } from "lucide-react";
+import { MapPin, Zap, Home, Building2, Tractor } from "lucide-react";
 
-type FilterType = "todos" | "residencial" | "comercial";
+type FilterType = "todos" | "residencial" | "comercial" | "agronegocio";
 
 const projects = [
   {
@@ -58,6 +58,7 @@ const filters: { value: FilterType; label: string; icon: typeof Home }[] = [
   { value: "todos", label: "Todos", icon: Zap },
   { value: "residencial", label: "Residencial", icon: Home },
   { value: "comercial", label: "Comercial", icon: Building2 },
+  { value: "agronegocio", label: "Agronegócio", icon: Tractor },
 ];
 
 export function ProjectsSection() {
@@ -137,12 +138,14 @@ export function ProjectsSection() {
 
               {/* Badge */}
               <div className="absolute top-4 left-4">
-                <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+              <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
                   project.type === "residencial"
                     ? "bg-blue-500/90 text-white"
-                    : "bg-green-500/90 text-white"
+                    : project.type === "comercial"
+                    ? "bg-green-500/90 text-white"
+                    : "bg-amber-600/90 text-white"
                 }`}>
-                  {project.type === "residencial" ? "Residencial" : "Comercial"}
+                  {project.type === "residencial" ? "Residencial" : project.type === "comercial" ? "Comercial" : "Agronegócio"}
                 </span>
               </div>
             </div>
