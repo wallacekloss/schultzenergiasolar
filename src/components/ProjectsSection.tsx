@@ -15,9 +15,16 @@ import residenciaLopes from "@/assets/projects/residencia-lopes.jpg";
 type FilterType = "todos" | "residencial" | "comercial" | "agronegocio";
 
 const projects = [
-  // Comercial
   {
     id: 1,
+    type: "residencial" as const,
+    title: "Residência Batista",
+    location: "Conceição, Linhares - ES",
+    power: "10,24 kWp",
+    image: residenciaBatista,
+  },
+  {
+    id: 2,
     type: "comercial" as const,
     title: "Comercial Celço",
     location: "Bairro Interlagos, Linhares - ES",
@@ -25,32 +32,7 @@ const projects = [
     image: comercialCelco,
   },
   {
-    id: 2,
-    type: "comercial" as const,
-    title: "Comercial Delci",
-    location: "Bairro Interlagos, Linhares - ES",
-    power: "7,44 kWp",
-    image: comercialDelci,
-  },
-  {
     id: 3,
-    type: "comercial" as const,
-    title: "Comercial Moreira",
-    location: "Bairro Bebedouro, Linhares - ES",
-    power: "8,88 kWp",
-    image: comercialMoreira,
-  },
-  // Agronegócio
-  {
-    id: 4,
-    type: "agronegocio" as const,
-    title: "Agronegócio Silva",
-    location: "Parajú, Vila Valério - ES",
-    power: "9,69 kWp",
-    image: agroSilva,
-  },
-  {
-    id: 5,
     type: "agronegocio" as const,
     title: "Agronegócio Palma",
     location: "Juncado, Sooretama - ES",
@@ -58,16 +40,15 @@ const projects = [
     image: agroPalma,
   },
   {
-    id: 6,
-    type: "agronegocio" as const,
-    title: "Agronegócio Nilson",
-    location: "Farias, Linhares - ES",
-    power: "37,53 kWp",
-    image: agroNilson,
+    id: 4,
+    type: "comercial" as const,
+    title: "Comercial Moreira",
+    location: "Bairro Bebedouro, Linhares - ES",
+    power: "8,88 kWp",
+    image: comercialMoreira,
   },
-  // Residencial
   {
-    id: 7,
+    id: 5,
     type: "residencial" as const,
     title: "Residência Miranda",
     location: "Jardim Laguna, Linhares - ES",
@@ -75,12 +56,28 @@ const projects = [
     image: residenciaMiranda,
   },
   {
+    id: 6,
+    type: "agronegocio" as const,
+    title: "Agronegócio Silva",
+    location: "Parajú, Vila Valério - ES",
+    power: "9,69 kWp",
+    image: agroSilva,
+  },
+  {
+    id: 7,
+    type: "agronegocio" as const,
+    title: "Agronegócio Nilson",
+    location: "Farias, Linhares - ES",
+    power: "37,53 kWp",
+    image: agroNilson,
+  },
+  {
     id: 8,
-    type: "residencial" as const,
-    title: "Residência Batista",
-    location: "Conceição, Linhares - ES",
-    power: "10,24 kWp",
-    image: residenciaBatista,
+    type: "comercial" as const,
+    title: "Comercial Delci",
+    location: "Bairro Interlagos, Linhares - ES",
+    power: "7,44 kWp",
+    image: comercialDelci,
   },
   {
     id: 9,
