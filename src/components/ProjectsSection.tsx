@@ -121,12 +121,12 @@ export function ProjectsSection() {
         </div>
 
         {/* Filters */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="grid grid-cols-2 md:flex md:justify-center gap-3 md:gap-4 mb-12 max-w-md md:max-w-none mx-auto">
           {filters.map((filter) => (
             <button
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all duration-300 ${
+              className={`flex items-center justify-center gap-2 px-4 md:px-6 py-3 rounded-full font-medium transition-all duration-300 text-sm md:text-base ${
                 activeFilter === filter.value
                   ? "bg-primary text-primary-foreground shadow-cta"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
