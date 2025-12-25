@@ -1,56 +1,94 @@
 import { useState } from "react";
 import { MapPin, Zap, Home, Building2, Tractor } from "lucide-react";
 
+// Import project images
+import comercialCelco from "@/assets/projects/comercial-celco.jpg";
+import comercialDelci from "@/assets/projects/comercial-delci.jpg";
+import comercialMoreira from "@/assets/projects/comercial-moreira.jpg";
+import agroSilva from "@/assets/projects/agro-silva.jpg";
+import agroPalma from "@/assets/projects/agro-palma.jpg";
+import agroNilson from "@/assets/projects/agro-nilson.jpg";
+import residenciaMiranda from "@/assets/projects/residencia-miranda.jpg";
+import residenciaBatista from "@/assets/projects/residencia-batista.jpg";
+import residenciaLopes from "@/assets/projects/residencia-lopes.jpg";
+
 type FilterType = "todos" | "residencial" | "comercial" | "agronegocio";
 
 const projects = [
+  // Comercial
   {
     id: 1,
-    type: "residencial" as const,
-    title: "Residência Premium",
-    location: "Linhares, ES",
-    power: "8.5 kWp",
-    image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&h=400&fit=crop",
+    type: "comercial" as const,
+    title: "Comercial Celço",
+    location: "Bairro Interlagos, Linhares - ES",
+    power: "7,02 kWp",
+    image: comercialCelco,
   },
   {
     id: 2,
     type: "comercial" as const,
-    title: "Empresa de Logística",
-    location: "Vitória, ES",
-    power: "75 kWp",
-    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=600&h=400&fit=crop",
+    title: "Comercial Delci",
+    location: "Bairro Interlagos, Linhares - ES",
+    power: "7,44 kWp",
+    image: comercialDelci,
   },
   {
     id: 3,
-    type: "residencial" as const,
-    title: "Casa de Campo",
-    location: "Colatina, ES",
-    power: "12 kWp",
-    image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=600&h=400&fit=crop",
+    type: "comercial" as const,
+    title: "Comercial Moreira",
+    location: "Bairro Bebedouro, Linhares - ES",
+    power: "8,88 kWp",
+    image: comercialMoreira,
   },
+  // Agronegócio
   {
     id: 4,
-    type: "comercial" as const,
-    title: "Galpão Industrial",
-    location: "Serra, ES",
-    power: "250 kWp",
-    image: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=600&h=400&fit=crop",
+    type: "agronegocio" as const,
+    title: "Agronegócio Silva",
+    location: "Parajú, Vila Valério - ES",
+    power: "9,69 kWp",
+    image: agroSilva,
   },
   {
     id: 5,
-    type: "residencial" as const,
-    title: "Condomínio Fechado",
-    location: "Aracruz, ES",
-    power: "15 kWp",
-    image: "https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?w=600&h=400&fit=crop",
+    type: "agronegocio" as const,
+    title: "Agronegócio Palma",
+    location: "Juncado, Sooretama - ES",
+    power: "37,74 kWp",
+    image: agroPalma,
   },
   {
     id: 6,
-    type: "comercial" as const,
-    title: "Centro Comercial",
-    location: "Cachoeiro de Itapemirim, ES",
-    power: "180 kWp",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&h=400&fit=crop",
+    type: "agronegocio" as const,
+    title: "Agronegócio Nilson",
+    location: "Farias, Linhares - ES",
+    power: "37,53 kWp",
+    image: agroNilson,
+  },
+  // Residencial
+  {
+    id: 7,
+    type: "residencial" as const,
+    title: "Residência Miranda",
+    location: "Jardim Laguna, Linhares - ES",
+    power: "6,10 kWp",
+    image: residenciaMiranda,
+  },
+  {
+    id: 8,
+    type: "residencial" as const,
+    title: "Residência Batista",
+    location: "Conceição, Linhares - ES",
+    power: "10,24 kWp",
+    image: residenciaBatista,
+  },
+  {
+    id: 9,
+    type: "residencial" as const,
+    title: "Residência Lopes",
+    location: "São José, Linhares - ES",
+    power: "5,68 kWp",
+    image: residenciaLopes,
   },
 ];
 
