@@ -23,10 +23,10 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Instagram, href: "https://instagram.com/schultzenergiasolar", label: "Instagram" },
+  { icon: Facebook, href: "https://facebook.com/schultzenergiasolar", label: "Facebook" },
+  { icon: Linkedin, href: "https://linkedin.com/company/schultzenergiasolar", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/@schultzenergiasolar", label: "YouTube" },
 ];
 
 export function Footer() {
