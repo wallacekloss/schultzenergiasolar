@@ -85,7 +85,7 @@ export function Header() {
               {link.label}
             </a>)}
           <Button variant="default" className="mt-4 w-full" asChild>
-            <a href="#simulador">Simular Economia</a>
+            <a href="#simulador" onClick={() => setIsMobileMenuOpen(false)}>Simular Economia</a>
           </Button>
         </nav>
       </div>
