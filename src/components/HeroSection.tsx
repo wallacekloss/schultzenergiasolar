@@ -14,10 +14,10 @@ export function HeroSection() {
       <div className="absolute top-20 right-20 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-40 right-40 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl animate-float" />
 
-      <div className="container-max mx-auto sm:px-6 lg:px-8 relative z-10 pt-20 py-0 px-[3px]">
-        <div className="max-w-3xl">
+      <div className="container-max mx-auto px-6 sm:px-8 lg:px-12 relative z-10 pt-24 sm:pt-20">
+        <div className="max-w-3xl space-y-6 sm:space-y-4">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-6 animate-fade-up">
+          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 animate-fade-up">
             <Zap className="h-4 w-4 text-primary" />
             <span className="text-sm font-medium text-white/90">
               Líder em energia solar no Espírito Santo
@@ -25,7 +25,7 @@ export function HeroSection() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 animate-fade-up" style={{
+          <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight animate-fade-up" style={{
           animationDelay: "0.1s"
         }}>
             Reduza sua conta de luz em até{" "}
@@ -34,7 +34,7 @@ export function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl animate-fade-up" style={{
+          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl animate-fade-up" style={{
           animationDelay: "0.2s"
         }}>
             Invista com segurança e tenha retorno garantido. Projetos personalizados 
@@ -42,17 +42,17 @@ export function HeroSection() {
           </p>
 
           {/* Benefits List */}
-          <div className="flex flex-wrap gap-4 mb-8 animate-fade-up" style={{
+          <div className="flex flex-wrap gap-3 sm:gap-4 animate-fade-up" style={{
           animationDelay: "0.3s"
         }}>
             {["Economia imediata", "Payback em até 2 anos", "25 anos de garantia"].map(benefit => <div key={benefit} className="flex items-center gap-2 text-white/90">
-                <CheckCircle className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">{benefit}</span>
+                <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                <span className="text-xs sm:text-sm font-medium">{benefit}</span>
               </div>)}
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-up" style={{
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-fade-up" style={{
           animationDelay: "0.4s"
         }}>
             <Button variant="hero" size="xl" asChild>
@@ -69,15 +69,15 @@ export function HeroSection() {
           </div>
 
           {/* Social Proof */}
-          <div className="flex items-center gap-4 text-white/70 animate-fade-up" style={{
+          <div className="flex items-center gap-3 sm:gap-4 text-white/70 animate-fade-up pt-4 sm:pt-6" style={{
           animationDelay: "0.5s"
         }}>
             <div className="flex -space-x-3">
-              {[1, 2, 3, 4].map(i => <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/80 to-primary flex items-center justify-center text-xs font-bold text-white border-2 border-secondary">
+              {[1, 2, 3, 4].map(i => <div key={i} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary/80 to-primary flex items-center justify-center text-xs font-bold text-white border-2 border-secondary">
                   {String.fromCharCode(64 + i)}
                 </div>)}
             </div>
-            <p className="text-sm">
+            <p className="text-xs sm:text-sm">
               <span className="text-white font-semibold">+150 clientes</span> satisfeitos em todo o Espírito Santo
             </p>
           </div>
