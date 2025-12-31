@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { Calculator, ArrowRight, Zap, TrendingUp, Calendar } from "lucide-react";
+import { Calculator, ArrowRight, Zap, TrendingUp, Calendar, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-// Parâmetros reais do Espírito Santo
-const ES_PARAMS = {
-  irradiacaoMedia: 4.225, // kWh/m²/dia (média entre 4.1 e 4.35)
-  tarifaKwh: 0.17, // R$/kWh (tarifa EDP)
-  custoPorWp: 23.0, // R$/Wp instalado
-  taxaMinima: 50.0, // R$ taxa de disponibilidade
-  perdasSistema: 0.18, // 18% de perdas
+
+// Parâmetros atualizados
+const SOLAR_PARAMS = {
+  tarifaKwh: 0.95, // R$/kWh
+  hsp: 4.8, // Horas de Sol Pico
+  custoPorWp: 2.30, // R$/Wp instalado
+  economiaPercentual: 0.90, // 90% de economia
   diasMes: 30,
 };
 
@@ -27,23 +27,22 @@ export function SimulatorSection() {
 
   const billNumber = parseFloat(billValue) || 0;
 
-  // Cálculo do consumo mensal em kWh
-  const consumoMensalKwh = billNumber / ES_PARAMS.tarifaKwh;
+  // 1. Consumo mensal em kWh
+  const consumoMensalKwh = billNumber / SOLAR_PARAMS.tarifaKwh;
 
-  // Potência necessária do sistema (kWp) considerando irradiação e perdas
-  const eficienciaSistema = 1 - ES_PARAMS.perdasSistema;
-  const geracaoPorKwp = ES_PARAMS.irradiacaoMedia * ES_PARAMS.diasMes * eficienciaSistema;
-  const potenciaNecessariaKwp = consumoMensalKwh / geracaoPorKwp;
+  // 2. Potência do sistema em kWp
+  const potenciaSistemaKwp = consumoMensalKwh / (SOLAR_PARAMS.hsp * SOLAR_PARAMS.diasMes);
 
-  // Custo estimado do sistema
-  const custoSistema = potenciaNecessariaKwp * 1000 * ES_PARAMS.custoPorWp;
+  // 3. Custo estimado de instalação (R$ 2,30/Wp = R$ 2.300/kWp)
+  const custoInstalacao = potenciaSistemaKwp * 1000 * SOLAR_PARAMS.custoPorWp;
 
-  // Economia mensal (conta atual - taxa mínima)
-  const monthlySavings = Math.max(0, billNumber - ES_PARAMS.taxaMinima);
+  // 4. Economia mensal (90% da conta)
+  const monthlySavings = billNumber * SOLAR_PARAMS.economiaPercentual;
   const yearlySavings = monthlySavings * 12;
 
-  // Payback em meses
-  const paybackMonths = monthlySavings > 0 ? Math.ceil(custoSistema / monthlySavings) : 0;
+  // 5. Payback em meses e anos
+  const paybackMonths = monthlySavings > 0 ? Math.ceil(custoInstalacao / monthlySavings) : 0;
+  const paybackYears = (paybackMonths / 12).toFixed(1);
 
   const handleCalculate = () => {
     if (billNumber >= 200) {
@@ -57,7 +56,7 @@ export function SimulatorSection() {
 
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nPotência estimada: ${potenciaNecessariaKwp.toFixed(2)} kWp\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
+    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nPotência estimada: ${potenciaSistemaKwp.toFixed(2)} kWp\nCusto estimado: R$ ${custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
@@ -146,10 +145,19 @@ export function SimulatorSection() {
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <Zap className="h-5 w-5 text-primary" />
-                            <span className="text-sm text-muted-foreground">Potência Estimada</span>
+                            <span className="text-sm text-muted-foreground">Potência do Sistema</span>
                           </div>
                           <span className="font-display text-xl font-bold text-primary">
-                            {potenciaNecessariaKwp.toFixed(2)} kWp
+                            {potenciaSistemaKwp.toFixed(2)} kWp
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <DollarSign className="h-5 w-5 text-secondary" />
+                            <span className="text-sm text-muted-foreground">Custo Estimado</span>
+                          </div>
+                          <span className="font-display text-xl font-bold text-secondary">
+                            R$ {custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
@@ -163,20 +171,11 @@ export function SimulatorSection() {
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <Calendar className="h-5 w-5 text-secondary" />
-                            <span className="text-sm text-muted-foreground">Economia Anual</span>
-                          </div>
-                          <span className="font-display text-xl font-bold text-secondary">
-                            R$ {yearlySavings.toFixed(2)}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
                             <Calendar className="h-5 w-5 text-muted-foreground" />
                             <span className="text-sm text-muted-foreground">Payback Estimado</span>
                           </div>
                           <span className="font-display text-xl font-bold text-foreground">
-                            ~{paybackMonths} meses
+                            {paybackMonths} meses ({paybackYears} anos)
                           </span>
                         </div>
                       </div>
