@@ -2,7 +2,18 @@ import { useState } from "react";
 import { Calculator, ArrowRight, Zap, TrendingUp, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+// Parâmetros reais do Espírito Santo
+const ES_PARAMS = {
+  irradiacaoMedia: 4.225, // kWh/m²/dia (média entre 4.1 e 4.35)
+  tarifaKwh: 0.17, // R$/kWh (tarifa EDP)
+  custoPorWp: 23.0, // R$/Wp instalado
+  taxaMinima: 50.0, // R$ taxa de disponibilidade
+  perdasSistema: 0.18, // 18% de perdas
+  diasMes: 30,
+};
+
 type PropertyType = "residencial" | "comercial";
+
 export function SimulatorSection() {
   const [billValue, setBillValue] = useState("");
   const [propertyType, setPropertyType] = useState<PropertyType>("residencial");
@@ -13,22 +24,40 @@ export function SimulatorSection() {
     whatsapp: "",
     city: ""
   });
+
   const billNumber = parseFloat(billValue) || 0;
-  const savingsPercentage = propertyType === "residencial" ? 0.92 : 0.95;
-  const monthlySavings = billNumber * savingsPercentage;
+
+  // Cálculo do consumo mensal em kWh
+  const consumoMensalKwh = billNumber / ES_PARAMS.tarifaKwh;
+
+  // Potência necessária do sistema (kWp) considerando irradiação e perdas
+  const eficienciaSistema = 1 - ES_PARAMS.perdasSistema;
+  const geracaoPorKwp = ES_PARAMS.irradiacaoMedia * ES_PARAMS.diasMes * eficienciaSistema;
+  const potenciaNecessariaKwp = consumoMensalKwh / geracaoPorKwp;
+
+  // Custo estimado do sistema
+  const custoSistema = potenciaNecessariaKwp * 1000 * ES_PARAMS.custoPorWp;
+
+  // Economia mensal (conta atual - taxa mínima)
+  const monthlySavings = Math.max(0, billNumber - ES_PARAMS.taxaMinima);
   const yearlySavings = monthlySavings * 12;
-  const paybackMonths = propertyType === "residencial" ? 36 : 24;
+
+  // Payback em meses
+  const paybackMonths = monthlySavings > 0 ? Math.ceil(custoSistema / monthlySavings) : 0;
+
   const handleCalculate = () => {
     if (billNumber >= 200) {
       setShowResults(true);
     }
   };
+
   const handleGetQuote = () => {
     setShowLeadForm(true);
   };
+
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
+    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nPotência estimada: ${potenciaNecessariaKwp.toFixed(2)} kWp\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
@@ -116,19 +145,28 @@ export function SimulatorSection() {
                       <div className="bg-muted/50 rounded-2xl p-6 space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
+                            <Zap className="h-5 w-5 text-primary" />
+                            <span className="text-sm text-muted-foreground">Potência Estimada</span>
+                          </div>
+                          <span className="font-display text-xl font-bold text-primary">
+                            {potenciaNecessariaKwp.toFixed(2)} kWp
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
                             <TrendingUp className="h-5 w-5 text-primary" />
                             <span className="text-sm text-muted-foreground">Economia Mensal</span>
                           </div>
-                          <span className="font-display text-2xl font-bold text-primary">
+                          <span className="font-display text-xl font-bold text-primary">
                             R$ {monthlySavings.toFixed(2)}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <Zap className="h-5 w-5 text-secondary" />
+                            <Calendar className="h-5 w-5 text-secondary" />
                             <span className="text-sm text-muted-foreground">Economia Anual</span>
                           </div>
-                          <span className="font-display text-2xl font-bold text-secondary">
+                          <span className="font-display text-xl font-bold text-secondary">
                             R$ {yearlySavings.toFixed(2)}
                           </span>
                         </div>
