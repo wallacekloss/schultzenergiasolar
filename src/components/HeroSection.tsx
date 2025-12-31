@@ -15,7 +15,7 @@ export function HeroSection() {
       <div className="absolute bottom-40 right-40 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl animate-float" />
 
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-24 sm:pt-20">
-        <div className="max-w-4xl space-y-8 sm:space-y-6">
+        <div className="max-w-5xl space-y-10 sm:space-y-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 animate-fade-up">
             <Zap className="h-4 w-4 text-primary" />
