@@ -2,21 +2,44 @@ import { useState } from "react";
 import { Calculator, ArrowRight, Zap, TrendingUp, Calendar, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Parâmetros atualizados
 const SOLAR_PARAMS = {
   tarifaKwh: 1.00, // R$/kWh
-  hsp: 4, // Horas de Sol Pico
-  custoPorWp: 3.00, // R$/Wp instalado
-  economiaPercentual: 0.83, // 83% de economia
+  hsp: 4.8, // Horas de Sol Pico
+  eficiencia: 0.83, // Eficiência do sistema
   diasMes: 30,
 };
 
-type PropertyType = "residencial" | "comercial";
+// Tabela de preços por consumo (R$/Wp)
+const getCustoPorWp = (consumoKwh: number): number => {
+  if (consumoKwh <= 280) return 3.10;
+  if (consumoKwh <= 600) return 2.60;
+  if (consumoKwh <= 1000) return 2.40;
+  if (consumoKwh <= 1500) return 2.30;
+  if (consumoKwh <= 2000) return 2.20;
+  return 2.10;
+};
+
+// Percentuais de economia por tipo de unidade
+const ECONOMIA_POR_TIPO = {
+  residencial: 0.83,
+  comercial: 0.87,
+  rural: 0.95,
+};
+
+type UnitType = "residencial" | "comercial" | "rural";
 
 export function SimulatorSection() {
   const [billValue, setBillValue] = useState("");
-  const [propertyType, setPropertyType] = useState<PropertyType>("residencial");
+  const [unitType, setUnitType] = useState<UnitType>("residencial");
   const [showResults, setShowResults] = useState(false);
   const [showLeadForm, setShowLeadForm] = useState(false);
   const [leadData, setLeadData] = useState({
@@ -31,16 +54,21 @@ export function SimulatorSection() {
   const consumoMensalKwh = billNumber / SOLAR_PARAMS.tarifaKwh;
 
   // 2. Potência do sistema em kWp
-  const potenciaSistemaKwp = consumoMensalKwh / (SOLAR_PARAMS.hsp * SOLAR_PARAMS.diasMes);
+  const potenciaSistemaKwp = consumoMensalKwh / (SOLAR_PARAMS.diasMes * SOLAR_PARAMS.hsp * SOLAR_PARAMS.eficiencia);
 
-  // 3. Custo estimado de instalação (R$ 2,30/Wp = R$ 2.300/kWp)
-  const custoInstalacao = potenciaSistemaKwp * 1000 * SOLAR_PARAMS.custoPorWp;
+  // 3. Custo por Wp baseado no consumo
+  const custoPorWp = getCustoPorWp(consumoMensalKwh);
 
-  // 4. Economia mensal (90% da conta)
-  const monthlySavings = billNumber * SOLAR_PARAMS.economiaPercentual;
-  const yearlySavings = monthlySavings * 12;
+  // 4. Investimento estimado
+  const custoInstalacao = (potenciaSistemaKwp * 1000) * custoPorWp;
 
-  // 5. Payback em meses
+  // 5. Percentual de economia baseado no tipo de unidade
+  const percentualEconomia = ECONOMIA_POR_TIPO[unitType];
+
+  // 6. Economia mensal
+  const monthlySavings = billNumber * percentualEconomia;
+
+  // 7. Payback em meses
   const paybackMonths = monthlySavings > 0 ? Math.ceil(custoInstalacao / monthlySavings) : 0;
 
   const handleCalculate = () => {
@@ -53,9 +81,18 @@ export function SimulatorSection() {
     setShowLeadForm(true);
   };
 
+  const getUnitTypeLabel = (type: UnitType) => {
+    const labels = {
+      residencial: "Residencial",
+      comercial: "Comercial",
+      rural: "Rural"
+    };
+    return labels[type];
+  };
+
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${propertyType === "residencial" ? "Residencial" : "Comercial"}\nPotência estimada: ${potenciaSistemaKwp.toFixed(2)} kWp\nCusto estimado: R$ ${custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
+    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${getUnitTypeLabel(unitType)}\nPotência estimada: ${potenciaSistemaKwp.toFixed(2)} kWp\nCusto estimado: R$ ${custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
@@ -123,16 +160,24 @@ export function SimulatorSection() {
 
                   <div>
                     <label className="block text-sm text-secondary mb-2 font-semibold">
-                      Tipo de imóvel
+                      Tipo de Unidade
                     </label>
-                    <div className="grid grid-cols-2 gap-4">
-                      {(["residencial", "comercial"] as PropertyType[]).map(type => <button key={type} onClick={() => {
-                    setPropertyType(type);
-                    setShowResults(false);
-                  }} className={`py-3 px-4 rounded-lg border-2 font-medium transition-all ${propertyType === type ? "border-primary bg-primary/5 text-primary" : "border-border text-muted-foreground hover:border-primary/50"}`}>
-                          {type === "residencial" ? "Residencial" : "Comercial"}
-                        </button>)}
-                    </div>
+                    <Select
+                      value={unitType}
+                      onValueChange={(value: UnitType) => {
+                        setUnitType(value);
+                        setShowResults(false);
+                      }}
+                    >
+                      <SelectTrigger className="w-full h-12 bg-background border-2 border-border">
+                        <SelectValue placeholder="Selecione o tipo" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-background border border-border shadow-lg">
+                        <SelectItem value="residencial">Residencial (Economia: 83%)</SelectItem>
+                        <SelectItem value="comercial">Comercial (Economia: 87%)</SelectItem>
+                        <SelectItem value="rural">Rural (Economia: 95%)</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {!showResults ? <Button variant="default" size="lg" className="w-full" onClick={handleCalculate} disabled={billNumber < 200}>
