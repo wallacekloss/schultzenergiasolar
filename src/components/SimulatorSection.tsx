@@ -5,10 +5,10 @@ import { Input } from "@/components/ui/input";
 
 // Parâmetros atualizados
 const SOLAR_PARAMS = {
-  tarifaKwh: 0.95, // R$/kWh
-  hsp: 4.8, // Horas de Sol Pico
-  custoPorWp: 2.30, // R$/Wp instalado
-  economiaPercentual: 0.90, // 90% de economia
+  tarifaKwh: 1.00, // R$/kWh
+  hsp: 4, // Horas de Sol Pico
+  custoPorWp: 3.00, // R$/Wp instalado
+  economiaPercentual: 0.83, // 83% de economia
   diasMes: 30,
 };
 
@@ -40,9 +40,8 @@ export function SimulatorSection() {
   const monthlySavings = billNumber * SOLAR_PARAMS.economiaPercentual;
   const yearlySavings = monthlySavings * 12;
 
-  // 5. Payback em meses e anos
+  // 5. Payback em meses
   const paybackMonths = monthlySavings > 0 ? Math.ceil(custoInstalacao / monthlySavings) : 0;
-  const paybackYears = (paybackMonths / 12).toFixed(1);
 
   const handleCalculate = () => {
     if (billNumber >= 200) {
@@ -174,9 +173,9 @@ export function SimulatorSection() {
                             <Calendar className="h-5 w-5 text-muted-foreground" />
                             <span className="text-sm text-muted-foreground">Payback Estimado</span>
                           </div>
-                          <span className="font-display text-xl font-bold text-foreground">
-                            {paybackMonths} meses ({paybackYears} anos)
-                          </span>
+                                          <span className="font-display text-xl font-bold text-foreground">
+                                            {paybackMonths} meses
+                                          </span>
                         </div>
                       </div>
 
