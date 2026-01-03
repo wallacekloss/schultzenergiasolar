@@ -2,13 +2,6 @@ import { useState } from "react";
 import { Calculator, ArrowRight, Zap, TrendingUp, Calendar, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
 // Parâmetros atualizados
 const SOLAR_PARAMS = {
@@ -162,22 +155,24 @@ export function SimulatorSection() {
                     <label className="block text-sm text-secondary mb-2 font-semibold">
                       Tipo de Unidade
                     </label>
-                    <Select
-                      value={unitType}
-                      onValueChange={(value: UnitType) => {
-                        setUnitType(value);
-                        setShowResults(false);
-                      }}
-                    >
-                      <SelectTrigger className="w-full h-12 bg-background border-2 border-border">
-                        <SelectValue placeholder="Selecione o tipo" />
-                      </SelectTrigger>
-                      <SelectContent className="bg-background border border-border shadow-lg">
-                        <SelectItem value="residencial">Residencial (Economia: 83%)</SelectItem>
-                        <SelectItem value="comercial">Comercial (Economia: 87%)</SelectItem>
-                        <SelectItem value="rural">Rural (Economia: 95%)</SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <div className="grid grid-cols-3 gap-3">
+                      {(["residencial", "comercial", "rural"] as UnitType[]).map(type => (
+                        <button
+                          key={type}
+                          onClick={() => {
+                            setUnitType(type);
+                            setShowResults(false);
+                          }}
+                          className={`py-3 px-4 rounded-lg border-2 font-medium transition-all ${
+                            unitType === type
+                              ? "border-primary bg-primary/5 text-primary"
+                              : "border-border text-muted-foreground hover:border-primary/50"
+                          }`}
+                        >
+                          {getUnitTypeLabel(type)}
+                        </button>
+                      ))}
+                    </div>
                   </div>
 
                   {!showResults ? <Button variant="default" size="lg" className="w-full" onClick={handleCalculate} disabled={billNumber < 200}>
