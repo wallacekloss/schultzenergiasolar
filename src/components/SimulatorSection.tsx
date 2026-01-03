@@ -171,7 +171,7 @@ export function SimulatorSection() {
                             setUnitType(type);
                             setShowResults(false);
                           }}
-                          className={`py-3 px-4 rounded-lg border-2 font-medium transition-all ${
+                          className={`py-3 px-2 sm:px-4 rounded-lg border-2 font-medium transition-all text-center text-sm sm:text-base ${
                             unitType === type
                               ? "border-primary bg-primary/5 text-primary"
                               : "border-border text-muted-foreground hover:border-primary/50"
