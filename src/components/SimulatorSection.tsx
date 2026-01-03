@@ -7,8 +7,13 @@ import { Input } from "@/components/ui/input";
 const SOLAR_PARAMS = {
   tarifaKwh: 1.00, // R$/kWh
   hsp: 4.8, // Horas de Sol Pico
-  eficiencia: 0.83, // Eficiência do sistema
   diasMes: 30,
+};
+
+// Eficiência baseada no consumo
+const getEficiencia = (consumoKwh: number): number => {
+  if (consumoKwh <= 1000) return 0.80;
+  return 0.83;
 };
 
 // Tabela de preços por consumo (R$/Wp)
@@ -46,8 +51,11 @@ export function SimulatorSection() {
   // 1. Consumo mensal em kWh
   const consumoMensalKwh = billNumber / SOLAR_PARAMS.tarifaKwh;
 
-  // 2. Potência do sistema em kWp
-  const potenciaSistemaKwp = consumoMensalKwh / (SOLAR_PARAMS.diasMes * SOLAR_PARAMS.hsp * SOLAR_PARAMS.eficiencia);
+  // 2. Eficiência baseada no consumo
+  const eficiencia = getEficiencia(consumoMensalKwh);
+
+  // 3. Potência do sistema em kWp
+  const potenciaSistemaKwp = consumoMensalKwh / (SOLAR_PARAMS.diasMes * SOLAR_PARAMS.hsp * eficiencia);
 
   // 3. Custo por Wp baseado no consumo
   const custoPorWp = getCustoPorWp(consumoMensalKwh);
