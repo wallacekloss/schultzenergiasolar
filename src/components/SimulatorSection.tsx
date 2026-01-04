@@ -18,8 +18,8 @@ const getEficiencia = (consumoKwh: number): number => {
 
 // Tabela de preços por consumo (R$/Wp)
 const getCustoPorWp = (consumoKwh: number): number => {
-  if (consumoKwh <= 280) return 3.10;
-  if (consumoKwh <= 600) return 2.60;
+  if (consumoKwh <= 300) return 3.10;
+  if (consumoKwh <= 600) return 2.70;
   if (consumoKwh <= 1000) return 2.40;
   if (consumoKwh <= 1500) return 2.30;
   if (consumoKwh <= 2000) return 2.20;
