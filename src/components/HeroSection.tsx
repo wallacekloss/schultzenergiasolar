@@ -25,14 +25,6 @@ export function HeroSection() {
             com energia solar
           </h1>
 
-          {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl animate-fade-up" style={{
-          animationDelay: "0.2s"
-        }}>
-            Invista com segurança e tenha retorno garantido. Projetos personalizados 
-            para residências e empresas com instalação profissional e suporte completo.
-          </p>
-
           {/* Benefits List */}
           <div className="flex flex-wrap gap-3 sm:gap-4 animate-fade-up" style={{
           animationDelay: "0.3s"
