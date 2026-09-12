@@ -16,14 +16,6 @@ export function HeroSection() {
 
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-24 sm:pt-20">
         <div className="max-w-5xl space-y-6 sm:space-y-10">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 animate-fade-up">
-            <Zap className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-white/90">
-              Líder em energia solar no Espírito Santo
-            </span>
-          </div>
-
           {/* Headline */}
           <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight animate-fade-up" style={{
           animationDelay: "0.1s"
@@ -32,14 +24,6 @@ export function HeroSection() {
             <span className="text-primary">95%</span>{" "}
             com energia solar
           </h1>
-
-          {/* Subheadline */}
-          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl animate-fade-up" style={{
-          animationDelay: "0.2s"
-        }}>
-            Invista com segurança e tenha retorno garantido. Projetos personalizados 
-            para residências e empresas com instalação profissional e suporte completo.
-          </p>
 
           {/* Benefits List */}
           <div className="flex flex-wrap gap-3 sm:gap-4 animate-fade-up" style={{
