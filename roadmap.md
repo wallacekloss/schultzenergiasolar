@@ -28,6 +28,6 @@
 
 ## Melhorias finais de SEO técnico e indexação
 
-- [ ] Remover a rota genérica e preservar todas as rotas públicas válidas
-- [ ] Auditar schemas, metadados, sitemap, robots, imagens e links internos
-- [ ] Validar build, rotas públicas e página 404
+- [x] Remover a rota genérica e preservar todas as rotas públicas válidas
+- [x] Auditar schemas, metadados, sitemap, robots, imagens e links internos
+- [x] Validar build, rotas públicas e página 404
