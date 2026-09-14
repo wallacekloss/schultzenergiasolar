@@ -4,7 +4,8 @@ import { PageHero } from "@/components/PageHero";
 import { FAQSection } from "@/components/FAQSection";
 import { CTASection } from "@/components/CTASection";
 import { ProjectGrid } from "@/components/ProjectGrid";
-import { SEO, breadcrumbSchema, serviceSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema, serviceSchema } from "@/lib/seo-schema";
 import { useManagedContent } from "@/hooks/use-managed-content";
 import NotFound from "./NotFound";
 

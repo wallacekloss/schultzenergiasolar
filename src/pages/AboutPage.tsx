@@ -1,7 +1,8 @@
 import { Check, Clock, HeadphonesIcon, Monitor, ShieldCheck, Users } from "lucide-react";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
-import { SEO, breadcrumbSchema, webPageSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 
 const pillars = [
   { icon: Users, title: "Equipe própria", text: "Do projeto à instalação, o trabalho é realizado pela nossa equipe." },

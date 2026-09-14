@@ -7,7 +7,8 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HomeFAQ } from "@/components/HomeFAQ";
-import { SEO, homeSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { homeSchema } from "@/lib/seo-schema";
 
 const homeTitle = "Energia Solar em Linhares | Schultz Energia Solar";
 

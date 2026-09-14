@@ -1,7 +1,8 @@
 import { Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/PageHero";
-import { SEO, breadcrumbSchema, webPageSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema, webPageSchema } from "@/lib/seo-schema";
 import { COMPANY, MAPS_DIRECTIONS, MAPS_EMBED, WHATSAPP_DEFAULT } from "@/data/company";
 
 export default function ContactPage() {
