@@ -83,7 +83,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className={cn("xl:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-y-auto shadow-lg", isMobileMenuOpen ? "max-h-[calc(100vh-5rem)] opacity-100" : "max-h-0 opacity-0")}>
+      <div className={cn("xl:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-y-auto shadow-lg", isMobileMenuOpen ? "max-h-[calc(100vh-5rem)] opacity-100 visible" : "max-h-0 opacity-0 invisible")}>
         <nav className="container-max mx-auto px-4 py-5" aria-label="Navegação móvel">
           <div className="grid sm:grid-cols-2 gap-x-8">
             <div>
