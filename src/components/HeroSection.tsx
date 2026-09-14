@@ -6,7 +6,7 @@ import heroImage from "@/assets/hero-solar.jpg";
 export function HeroSection() {
   return (
     <section id="inicio" className="relative min-h-[760px] h-[100svh] max-h-[980px] flex items-center overflow-hidden">
-      <img src={heroImage} alt="Casa com sistema de energia solar instalado pela Schultz em Linhares" fetchPriority="high" width="1920" height="1080" className="absolute inset-0 w-full h-full object-cover" />
+      <img src={heroImage} alt="Casa com sistema de energia solar instalado pela Schultz em Linhares" width="1920" height="1080" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/80 to-secondary/35" />
       <div className="absolute inset-0 bg-gradient-to-t from-secondary/80 via-transparent to-secondary/30" />
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-28 pb-8 w-full">
