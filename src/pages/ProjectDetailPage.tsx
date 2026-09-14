@@ -4,13 +4,15 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CTASection } from "@/components/CTASection";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { SEO, breadcrumbSchema } from "@/components/SEO";
-import { getProject } from "@/data/projects";
 import { COMPANY } from "@/data/company";
+import { useManagedContent } from "@/hooks/use-managed-content";
 import NotFound from "./NotFound";
 
 export default function ProjectDetailPage() {
   const { slug } = useParams();
-  const project = getProject(slug);
+  const { projects, isLoading } = useManagedContent();
+  const project = projects.find(item => item.slug === slug);
+  if (isLoading && !project) return <div className="min-h-[70vh] grid place-items-center text-muted-foreground">Carregando...</div>;
   if (!project) return <NotFound />;
   const path = `/projetos/${project.slug}/`;
   const segmentPath = `/energia-solar-${project.segment === "rural" ? "rural" : project.segment}/`;

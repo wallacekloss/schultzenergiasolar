@@ -5,7 +5,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { CTASection } from "@/components/CTASection";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { SEO, breadcrumbSchema, serviceSchema } from "@/components/SEO";
-import { getContentPage } from "@/data/pages";
+import { useManagedContent } from "@/hooks/use-managed-content";
 import NotFound from "./NotFound";
 
 const benefitIcons = [Lightbulb, ShieldCheck, Wrench];
@@ -13,7 +13,9 @@ const benefitIcons = [Lightbulb, ShieldCheck, Wrench];
 export default function ContentPage() {
   const { pathname } = useLocation();
   const slug = pathname.split("/").filter(Boolean)[0] ?? "";
-  const page = getContentPage(slug);
+  const { pages, isLoading } = useManagedContent();
+  const page = pages.find(item => item.slug === slug);
+  if (isLoading && !page) return <div className="min-h-[70vh] grid place-items-center text-muted-foreground">Carregando...</div>;
   if (!page) return <NotFound />;
 
   const breadcrumbs = [{ name: "Início", path: "/" }, { name: page.breadcrumb, path: page.path }];

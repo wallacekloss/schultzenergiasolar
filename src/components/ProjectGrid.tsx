@@ -1,8 +1,10 @@
 import { ArrowUpRight, MapPin, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
-import { projects, type ProjectSegment } from "@/data/projects";
+import type { ProjectSegment } from "@/data/projects";
+import { useManagedContent } from "@/hooks/use-managed-content";
 
 export function ProjectGrid({ segment, limit }: { segment?: ProjectSegment; limit?: number }) {
+  const { projects } = useManagedContent();
   const displayed = projects.filter(p => !segment || p.segment === segment).slice(0, limit);
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
