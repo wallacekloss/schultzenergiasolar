@@ -14,6 +14,7 @@ import ContactPage from "./pages/ContactPage";
 import SimulatorPage from "./pages/SimulatorPage";
 import BlogPage from "./pages/BlogPage";
 import { allContentPages } from "./data/pages";
+import AdminPage from "./pages/AdminPage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/admin/" element={<AdminPage />} />
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Index />} />
             {allContentPages.map(page => <Route key={page.path} path={page.path} element={<ContentPage />} />)}

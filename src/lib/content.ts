@@ -69,7 +69,7 @@ export async function projectRowToProject(row: ProjectRow): Promise<Project> {
 export async function fetchDynamicContent() {
   const { data, error } = await supabase.from("content_pages").select("*").eq("published", true).order("sort_order");
   if (error) throw error;
-  return (data ?? []).map(contentRowToPage);
+  return (data ?? []).map(row => ({ kind: row.kind, page: contentRowToPage(row) }));
 }
 
 export async function fetchDynamicProjects() {
