@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-
 @layer base {
   :root {
     /* SCHULTZ ENERGIA SOLAR - Design System */
@@ -37,6 +35,8 @@
     --border: 0 0% 88%;
     --input: 0 0% 88%;
     --ring: 14 82% 51%;
+    --whatsapp: 142 70% 49%;
+    --whatsapp-foreground: 0 0% 100%;
 
     --radius: 0.75rem;
 
@@ -107,6 +107,10 @@
     scroll-behavior: smooth;
   }
 
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -114,7 +118,8 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', sans-serif;
-    @apply font-bold tracking-tight;
+    @apply font-bold;
+    letter-spacing: 0;
   }
 }
 

@@ -22,7 +22,7 @@ const buttonVariants = cva(
         hero: "bg-primary text-primary-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] text-base md:text-lg",
         heroOutline: "border-2 border-white/30 bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm text-base md:text-lg",
         cta: "bg-primary text-primary-foreground shadow-cta hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] animate-pulse-glow",
-        whatsapp: "bg-[#25D366] text-white hover:bg-[#20BD5A] shadow-lg hover:shadow-xl hover:scale-[1.02]",
+        whatsapp: "bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90 shadow-lg hover:shadow-xl hover:scale-[1.02]",
       },
       size: {
         default: "h-11 px-6 py-2",
