@@ -18,3 +18,10 @@
 - [x] Criar painel para soluções, serviços e projetos
 - [x] Integrar novos conteúdos às páginas públicas
 - [x] Validar login, cadastros e exibição pública
+
+## Auditoria final de SEO e conteúdo
+
+- [ ] Centralizar o Schema da empresa e revisar Service/BreadcrumbList
+- [ ] Auditar textos e dados dos nove projetos reais
+- [ ] Verificar termos antigos, links, imagens e rotas públicas
+- [ ] Validar sitemap, robots, canonicals, TypeScript e console
