@@ -15,6 +15,13 @@
       "when": 1789382735432,
       "tag": "0001_secure_admin_functions_and_project_images",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789383072163,
+      "tag": "0002_restore_public_content_reads",
+      "breakpoints": true
     }
   ]
 }
