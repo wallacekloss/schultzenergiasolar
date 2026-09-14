@@ -20,7 +20,7 @@ export function HeroSection() {
         <div className="max-w-4xl">
           <p className="inline-flex items-center gap-2 text-sm font-bold text-secondary-foreground mb-5"><MapPin className="h-4 w-4 text-primary" />Linhares e Região Norte do Espírito Santo</p>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-secondary-foreground leading-[1.05] mb-6 max-w-4xl">
-            Energia Solar em Linhares para gerar <span className="text-primary">economia de verdade</span>
+            Energia Solar em Linhares: Soluções Fotovoltaicas para sua <span className="text-primary">Casa, Empresa ou Propriedade</span>
           </h1>
           <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-3xl leading-relaxed mb-8">Projetamos e instalamos sistemas fotovoltaicos para residências, empresas, propriedades rurais e indústrias em Linhares e Região Norte do Espírito Santo.</p>
           <div className="flex flex-col sm:flex-row gap-3 mb-10">

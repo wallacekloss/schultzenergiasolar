@@ -1,5 +1,5 @@
 import { Check, ArrowRight, Lightbulb, Wrench, ShieldCheck } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
 import { FAQSection } from "@/components/FAQSection";
 import { CTASection } from "@/components/CTASection";
@@ -11,7 +11,8 @@ import NotFound from "./NotFound";
 const benefitIcons = [Lightbulb, ShieldCheck, Wrench];
 
 export default function ContentPage() {
-  const { slug = "" } = useParams();
+  const { pathname } = useLocation();
+  const slug = pathname.split("/").filter(Boolean)[0] ?? "";
   const page = getContentPage(slug);
   if (!page) return <NotFound />;
 

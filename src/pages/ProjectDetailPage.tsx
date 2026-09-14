@@ -5,6 +5,7 @@ import { CTASection } from "@/components/CTASection";
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { SEO, breadcrumbSchema } from "@/components/SEO";
 import { getProject } from "@/data/projects";
+import { COMPANY } from "@/data/company";
 import NotFound from "./NotFound";
 
 export default function ProjectDetailPage() {
@@ -15,7 +16,7 @@ export default function ProjectDetailPage() {
   const segmentPath = `/energia-solar-${project.segment === "rural" ? "rural" : project.segment}/`;
   const breadcrumbs = [{ name: "Início", path: "/" }, { name: "Projetos", path: "/projetos/" }, { name: project.title, path }];
   return <>
-    <SEO title={project.metaTitle} description={project.metaDescription} path={path} image={project.image.startsWith("http") ? project.image : `${window.location.origin}${project.image}`} schema={breadcrumbSchema(breadcrumbs)} />
+    <SEO title={project.metaTitle} description={project.metaDescription} path={path} image={project.image.startsWith("http") ? project.image : `${COMPANY.site}${project.image}`} schema={breadcrumbSchema(breadcrumbs)} />
     <article>
       <header className="pt-32 pb-10 bg-background"><div className="container-max mx-auto px-4 sm:px-6 lg:px-8"><Breadcrumbs items={[{ label: "Projetos", to: "/projetos/" }, { label: project.title }]} /><div className="mt-8 max-w-4xl"><p className="text-primary uppercase font-bold text-sm mb-3">{project.segmentLabel} • {project.location}</p><h1 className="font-display text-4xl md:text-6xl font-bold text-secondary leading-tight mb-5">{project.h1}</h1><p className="text-lg text-muted-foreground">Projeto real executado pela equipe da Schultz Energia Solar.</p></div></div></header>
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8"><img src={project.image} alt={project.alt} width="1200" height="900" className="w-full max-h-[720px] object-cover rounded-lg" /></div>

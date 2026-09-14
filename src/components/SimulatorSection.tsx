@@ -93,7 +93,7 @@ export function SimulatorSection() {
 
   const handleSubmitLead = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Olá! Gostaria de um orçamento para energia solar.\n\nNome: ${leadData.name}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${getUnitTypeLabel(unitType)}\nPotência estimada: ${potenciaSistemaKwp.toFixed(2)} kWp\nCusto estimado: R$ ${custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\nEconomia estimada: R$ ${monthlySavings.toFixed(2)}/mês`;
+    const message = `Olá! Gostaria de receber uma proposta de energia solar.\n\nNome: ${leadData.name}\nWhatsApp: ${leadData.whatsapp}\nCidade: ${leadData.city}\nValor da conta: R$ ${billValue}\nTipo: ${getUnitTypeLabel(unitType)}\nPotência estimada: ${potenciaSistemaKwp.toFixed(2)} kWp\nCusto estimado: R$ ${custoInstalacao.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}\nEconomia mensal estimada: R$ ${monthlySavings.toFixed(2)}\n\nEntendo que os valores são estimativas iniciais e dependem de análise técnica.`;
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
@@ -227,6 +227,7 @@ export function SimulatorSection() {
                         Quero receber uma proposta
                         <ArrowRight className="h-5 w-5" />
                       </Button>
+                      <p className="text-xs text-muted-foreground text-center">Valores estimados. A proposta final depende da análise de consumo e das condições do local.</p>
                     </>}
                 </div>
               </> : (/* Lead Form */
