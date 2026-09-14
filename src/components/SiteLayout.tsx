@@ -1,10 +1,16 @@
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { WhatsAppButton } from "./WhatsAppButton";
 import { BackToTopButton } from "./BackToTopButton";
 
 export function SiteLayout() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -12,7 +18,6 @@ export function SiteLayout() {
       <Footer />
       <WhatsAppButton />
       <BackToTopButton />
-      <ScrollRestoration />
     </div>
   );
 }
