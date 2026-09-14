@@ -10,3 +10,11 @@
 - [x] Atualizar rotas, sitemap, robots e metadados globais
 - [x] Remover referências antigas e revisar mobile, acessibilidade e performance
 - [x] Validar compilação e páginas principais no navegador
+
+## Painel administrativo
+
+- [x] Ativar login, perfis e armazenamento de conteúdo
+- [x] Criar regras de acesso para uma única conta administradora
+- [ ] Criar painel para soluções, serviços e projetos
+- [ ] Integrar novos conteúdos às páginas públicas
+- [ ] Validar login, cadastros e exibição pública
