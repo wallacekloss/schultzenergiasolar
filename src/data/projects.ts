@@ -157,8 +157,8 @@ export const projects: Project[] = raw.map((p) => {
     alt: `Sistema fotovoltaico de ${p.power} instalado em ${p.descriptionKind} no ${p.district}, ${p.city}`,
     metaTitle: `${p.title} – Energia Solar em ${p.district}, ${p.city.replace(" - ", "-")} | Schultz`,
     metaDescription: `Projeto de energia solar ${p.segment} de ${p.power} executado pela Schultz Energia Solar em ${location}. Veja fotos e a solução aplicada.`,
-    description: `Sistema fotovoltaico de ${p.power} instalado pela Schultz Energia Solar em ${p.descriptionKind} no ${location}. O atendimento foi feito pela nossa equipe própria, do dimensionamento inicial até a entrega do sistema em operação.`,
-    solution: `Dimensionamento do sistema conforme o consumo da unidade, definição do posicionamento dos módulos, instalação com equipe própria, homologação junto à concessionária e configuração do monitoramento da geração. Após a entrega, o cliente segue com acompanhamento e pós-venda da Schultz Energia Solar.`,
+    description: `Sistema fotovoltaico de ${p.power} da Schultz Energia Solar em ${p.descriptionKind} no ${location}. A foto apresenta o sistema no local do projeto.`,
+    solution: `Registro de projeto de energia solar ${p.segment} em ${location}, com potência informada de ${p.power}.`,
   };
 });
 

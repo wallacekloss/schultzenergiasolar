@@ -69,31 +69,6 @@ export function SEO({
   return null;
 }
 
-export const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "Organization"],
-  "@id": `${COMPANY.site}/#organization`,
-  name: COMPANY.name,
-  url: `${COMPANY.site}/`,
-  logo: `${COMPANY.site}/logo-schultz.png`,
-  image: `${COMPANY.site}/logo-schultz.png`,
-  telephone: COMPANY.phoneE164,
-  email: COMPANY.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Avenida Governador Dias Lopes, 346, Loja 02",
-    addressLocality: "Linhares",
-    addressRegion: "ES",
-    postalCode: "29902-060",
-    addressCountry: "BR",
-  },
-  areaServed: [
-    { "@type": "City", name: "Linhares" },
-    { "@type": "AdministrativeArea", name: "Região Norte do Espírito Santo" },
-  ],
-  sameAs: Object.values(COMPANY.social),
-};
-
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
   return {
     "@context": "https://schema.org",
@@ -114,7 +89,11 @@ export function serviceSchema(name: string, description: string, path: string) {
     name,
     description,
     url: `${COMPANY.site}${path}`,
-    provider: { "@id": `${COMPANY.site}/#organization` },
+    provider: {
+      "@type": "Organization",
+      "@id": `${COMPANY.site}/#organization`,
+      name: COMPANY.name,
+    },
     areaServed: "Linhares e Região Norte do Espírito Santo",
   };
 }
