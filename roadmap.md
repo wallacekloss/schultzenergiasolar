@@ -25,3 +25,9 @@
 - [x] Auditar textos e dados dos nove projetos reais
 - [x] Verificar termos antigos, links, imagens e rotas públicas
 - [x] Validar sitemap, robots, canonicals, TypeScript e console
+
+## Melhorias finais de SEO técnico e indexação
+
+- [ ] Remover a rota genérica e preservar todas as rotas públicas válidas
+- [ ] Auditar schemas, metadados, sitemap, robots, imagens e links internos
+- [ ] Validar build, rotas públicas e página 404
