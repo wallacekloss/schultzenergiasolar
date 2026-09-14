@@ -1,7 +1,8 @@
 import { ProjectGrid } from "@/components/ProjectGrid";
 import { PageHero } from "@/components/PageHero";
 import { CTASection } from "@/components/CTASection";
-import { SEO, breadcrumbSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 
 export default function ProjectsPage() {
   const title = "Projetos de Energia Solar em Linhares | Schultz Energia Solar";

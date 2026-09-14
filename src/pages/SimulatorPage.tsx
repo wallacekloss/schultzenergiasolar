@@ -1,6 +1,7 @@
 import { PageHero } from "@/components/PageHero";
 import { SimulatorSection } from "@/components/SimulatorSection";
-import { SEO, breadcrumbSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 
 export default function SimulatorPage() {
   return <>

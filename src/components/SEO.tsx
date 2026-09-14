@@ -61,39 +61,16 @@ export function SEO({
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.dataset.pageSchema = "true";
-      script.text = JSON.stringify(schema);
+      const structuredData = Array.isArray(schema)
+        ? {
+            "@context": "https://schema.org",
+            "@graph": schema.map(({ "@context": _context, ...node }) => node),
+          }
+        : schema;
+      script.text = JSON.stringify(structuredData);
       document.head.appendChild(script);
     }
   }, [canonical, description, image, noindex, schema, title, type]);
 
   return null;
-}
-
-export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: `${COMPANY.site}${item.path}`,
-    })),
-  };
-}
-
-export function serviceSchema(name: string, description: string, path: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name,
-    description,
-    url: `${COMPANY.site}${path}`,
-    provider: {
-      "@type": "Organization",
-      "@id": `${COMPANY.site}/#organization`,
-      name: COMPANY.name,
-    },
-    areaServed: "Linhares e Região Norte do Espírito Santo",
-  };
 }

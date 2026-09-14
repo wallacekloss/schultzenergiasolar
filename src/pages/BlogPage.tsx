@@ -1,7 +1,8 @@
 import { ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PageHero } from "@/components/PageHero";
-import { SEO, breadcrumbSchema } from "@/components/SEO";
+import { SEO } from "@/components/SEO";
+import { breadcrumbSchema } from "@/lib/seo-schema";
 
 const categories = ["Energia Solar", "Energia Solar Residencial", "Energia Solar Comercial", "Manutenção", "Economia de Energia", "Projetos"];
 const planned = [
