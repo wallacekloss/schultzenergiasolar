@@ -65,7 +65,13 @@ export function SEO({
       const script = document.createElement("script");
       script.type = "application/ld+json";
       script.dataset.pageSchema = "true";
-      script.text = JSON.stringify(schema);
+      const structuredData = Array.isArray(schema)
+        ? {
+            "@context": "https://schema.org",
+            "@graph": schema.map(({ "@context": _context, ...node }) => node),
+          }
+        : schema;
+      script.text = JSON.stringify(structuredData);
       document.head.appendChild(script);
     }
   }, [canonical, description, image, noindex, schema, title, type]);
@@ -74,7 +80,7 @@ export function SEO({
 }
 
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
-  const pagePath = items.at(-1)?.path ?? "/";
+  const pagePath = items[items.length - 1]?.path ?? "/";
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -158,7 +164,18 @@ export function homeSchema(title: string) {
         isPartOf: { "@id": websiteId },
         about: { "@id": organizationId },
       },
-      breadcrumbSchema([{ name: "Início", path: "/" }]),
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${homeUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Início",
+            item: homeUrl,
+          },
+        ],
+      },
     ],
   };
 }
