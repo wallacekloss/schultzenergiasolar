@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logoSchultz from "@/assets/logo-schultz.png";
 import { Link, NavLink } from "react-router-dom";
-import { solutions, services } from "@/data/pages";
 import { COMPANY } from "@/data/company";
+import { useManagedContent } from "@/hooks/use-managed-content";
 
 const navLinks = [
   { to: "/", label: "Início" },
@@ -15,7 +15,7 @@ const navLinks = [
   { to: "/contato/", label: "Contato" },
 ];
 
-function Dropdown({ label, items }: { label: string; items: typeof solutions }) {
+function Dropdown({ label, items }: { label: string; items: Array<{ path: string; navLabel: string }> }) {
   return (
     <div className="relative group">
       <button className="flex items-center gap-1 text-sm text-foreground/80 group-hover:text-primary font-bold py-7" aria-haspopup="true">
@@ -36,6 +36,7 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const { solutions, services } = useManagedContent();
   
   useEffect(() => {
     const handleScroll = () => {
