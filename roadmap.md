@@ -21,7 +21,7 @@
 
 ## Auditoria final de SEO e conteúdo
 
-- [ ] Centralizar o Schema da empresa e revisar Service/BreadcrumbList
-- [ ] Auditar textos e dados dos nove projetos reais
-- [ ] Verificar termos antigos, links, imagens e rotas públicas
-- [ ] Validar sitemap, robots, canonicals, TypeScript e console
+- [x] Centralizar o Schema da empresa e revisar Service/BreadcrumbList
+- [x] Auditar textos e dados dos nove projetos reais
+- [x] Verificar termos antigos, links, imagens e rotas públicas
+- [x] Validar sitemap, robots, canonicals, TypeScript e console
