@@ -7,12 +7,14 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HomeFAQ } from "@/components/HomeFAQ";
-import { SEO } from "@/components/SEO";
+import { SEO, homeSchema } from "@/components/SEO";
+
+const homeTitle = "Energia Solar em Linhares | Schultz Energia Solar";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <SEO title="Energia Solar em Linhares | Schultz Energia Solar" description="Energia solar em Linhares-ES para residências, empresas, propriedades rurais e indústrias. Projeto, instalação, homologação e suporte pela Schultz Energia Solar." path="/" />
+      <SEO title={homeTitle} description="Energia solar em Linhares-ES para residências, empresas, propriedades rurais e indústrias. Projeto, instalação, homologação e suporte pela Schultz Energia Solar." path="/" schema={homeSchema(homeTitle)} />
       <HeroSection />
       <BenefitsSection />
       <AboutSection />

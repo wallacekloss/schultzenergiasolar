@@ -12,6 +12,10 @@ interface SEOProps {
 }
 
 const defaultImage = `${COMPANY.site}/logo-schultz.png`;
+const organizationId = `${COMPANY.site}/#organization`;
+const websiteId = `${COMPANY.site}/#website`;
+
+const absoluteUrl = (path: string) => `${COMPANY.site}${path === "/" ? "/" : path}`;
 
 export function SEO({
   title,
@@ -22,7 +26,7 @@ export function SEO({
   schema,
   noindex = false,
 }: SEOProps) {
-  const canonical = `${COMPANY.site}${path === "/" ? "/" : path}`;
+  const canonical = absoluteUrl(path);
   useEffect(() => {
     document.title = title;
     const setMeta = (selector: string, attribute: "name" | "property", key: string, content: string) => {
@@ -70,30 +74,91 @@ export function SEO({
 }
 
 export function breadcrumbSchema(items: Array<{ name: string; path: string }>) {
+  const pagePath = items.at(-1)?.path ?? "/";
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${absoluteUrl(pagePath)}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
-      item: `${COMPANY.site}${item.path}`,
+      ...(items.length === 1 || index < items.length - 1 ? { item: absoluteUrl(item.path) } : {}),
     })),
   };
 }
 
 export function serviceSchema(name: string, description: string, path: string) {
+  const url = absoluteUrl(path);
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}#service`,
     name,
     description,
-    url: `${COMPANY.site}${path}`,
-    provider: {
-      "@type": "Organization",
-      "@id": `${COMPANY.site}/#organization`,
-      name: COMPANY.name,
-    },
-    areaServed: "Linhares e Região Norte do Espírito Santo",
+    url,
+    provider: { "@id": organizationId },
+    areaServed: { "@type": "City", name: "Linhares" },
+  };
+}
+
+export function webPageSchema(name: string, path: string) {
+  const url = absoluteUrl(path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    isPartOf: { "@id": websiteId },
+    about: { "@id": organizationId },
+  };
+}
+
+export function homeSchema(title: string) {
+  const homeUrl = absoluteUrl("/");
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "Organization"],
+        "@id": organizationId,
+        name: COMPANY.name,
+        legalName: COMPANY.legalName,
+        taxID: COMPANY.cnpj,
+        url: homeUrl,
+        telephone: COMPANY.phoneE164,
+        email: COMPANY.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: COMPANY.address.street,
+          addressLocality: COMPANY.address.city,
+          addressRegion: COMPANY.address.state,
+          postalCode: COMPANY.address.zip,
+          addressCountry: "BR",
+        },
+        areaServed: [
+          { "@type": "City", name: "Linhares" },
+          { "@type": "AdministrativeArea", name: "Região Norte do Espírito Santo" },
+        ],
+        sameAs: ["https://www.instagram.com/schultzenergiasolar/"],
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: homeUrl,
+        name: COMPANY.name,
+        publisher: { "@id": organizationId },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${homeUrl}#webpage`,
+        url: homeUrl,
+        name: title,
+        isPartOf: { "@id": websiteId },
+        about: { "@id": organizationId },
+      },
+      breadcrumbSchema([{ name: "Início", path: "/" }]),
+    ],
   };
 }

@@ -24,7 +24,7 @@ export const COMPANY = {
     team: "Equipe própria",
   },
   social: {
-    instagram: "https://instagram.com/schultzenergiasolar",
+    instagram: "https://www.instagram.com/schultzenergiasolar/",
     facebook: "https://facebook.com/schultzenergiasolar",
     linkedin: "https://linkedin.com/company/schultzenergiasolar",
     youtube: "https://youtube.com/@schultzenergiasolar",
