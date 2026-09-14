@@ -1,14 +1,7 @@
-import { ArrowRight, Check, MapPin } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero-solar.jpg";
-
-const stats = [
-  "Até 90% de economia na conta de luz",
-  "Mais de 170 projetos realizados",
-  "3+ anos de experiência",
-  "Equipe própria",
-];
 
 export function HeroSection() {
   return (
@@ -27,9 +20,6 @@ export function HeroSection() {
             <Button size="xl" asChild><Link to="/simulador/">Simule sua economia<ArrowRight /></Link></Button>
             <Button variant="heroOutline" size="xl" asChild><Link to="/projetos/">Conheça nossos projetos</Link></Button>
           </div>
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
-          {stats.map(stat => <div key={stat} className="flex items-start gap-2 p-3 sm:p-4 bg-secondary-foreground/10 backdrop-blur-lg border border-secondary-foreground/15 rounded-lg text-secondary-foreground text-xs sm:text-sm font-semibold"><Check className="h-5 w-5 text-primary shrink-0" />{stat}</div>)}
         </div>
       </div>
     </section>
