@@ -14,16 +14,226 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      content_pages: {
+        Row: {
+          benefits: Json
+          benefits_title: string
+          breadcrumb: string
+          created_at: string
+          cta_text: string
+          cta_title: string
+          faq: Json
+          h1: string
+          how_items: Json
+          how_title: string
+          id: string
+          intro: string
+          intro2: string
+          kind: Database["public"]["Enums"]["content_kind"]
+          meta_description: string
+          meta_title: string
+          nav_label: string
+          process_items: Json
+          process_title: string
+          project_segment: Database["public"]["Enums"]["project_segment"] | null
+          published: boolean
+          related_links: Json
+          service_name: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          benefits?: Json
+          benefits_title: string
+          breadcrumb: string
+          created_at?: string
+          cta_text: string
+          cta_title: string
+          faq?: Json
+          h1: string
+          how_items?: Json
+          how_title: string
+          id?: string
+          intro: string
+          intro2: string
+          kind: Database["public"]["Enums"]["content_kind"]
+          meta_description: string
+          meta_title: string
+          nav_label: string
+          process_items?: Json
+          process_title: string
+          project_segment?:
+            | Database["public"]["Enums"]["project_segment"]
+            | null
+          published?: boolean
+          related_links?: Json
+          service_name: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          benefits?: Json
+          benefits_title?: string
+          breadcrumb?: string
+          created_at?: string
+          cta_text?: string
+          cta_title?: string
+          faq?: Json
+          h1?: string
+          how_items?: Json
+          how_title?: string
+          id?: string
+          intro?: string
+          intro2?: string
+          kind?: Database["public"]["Enums"]["content_kind"]
+          meta_description?: string
+          meta_title?: string
+          nav_label?: string
+          process_items?: Json
+          process_title?: string
+          project_segment?:
+            | Database["public"]["Enums"]["project_segment"]
+            | null
+          published?: boolean
+          related_links?: Json
+          service_name?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name: string
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      projects: {
+        Row: {
+          alt: string
+          city: string
+          created_at: string
+          description: string
+          district: string
+          h1: string
+          id: string
+          image_path: string | null
+          image_url: string
+          meta_description: string
+          meta_title: string
+          power: string
+          published: boolean
+          segment: Database["public"]["Enums"]["project_segment"]
+          slug: string
+          solution: string
+          sort_order: number
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          alt: string
+          city: string
+          created_at?: string
+          description: string
+          district: string
+          h1: string
+          id?: string
+          image_path?: string | null
+          image_url: string
+          meta_description: string
+          meta_title: string
+          power: string
+          published?: boolean
+          segment: Database["public"]["Enums"]["project_segment"]
+          slug: string
+          solution: string
+          sort_order?: number
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          alt?: string
+          city?: string
+          created_at?: string
+          description?: string
+          district?: string
+          h1?: string
+          id?: string
+          image_path?: string | null
+          image_url?: string
+          meta_description?: string
+          meta_title?: string
+          power?: string
+          published?: boolean
+          segment?: Database["public"]["Enums"]["project_segment"]
+          slug?: string
+          solution?: string
+          sort_order?: number
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      claim_initial_admin: { Args: { _display_name: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin"
+      content_kind: "solution" | "service"
+      project_segment: "residencial" | "comercial" | "rural"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +360,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin"],
+      content_kind: ["solution", "service"],
+      project_segment: ["residencial", "comercial", "rural"],
+    },
   },
 } as const
