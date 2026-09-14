@@ -160,7 +160,7 @@ export type Database = {
           h1: string
           id?: string
           image_path?: string | null
-          image_url: string
+          image_url?: string
           meta_description: string
           meta_title: string
           power: string
