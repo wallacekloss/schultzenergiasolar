@@ -15,7 +15,7 @@ const homeTitle = "Energia Solar em Linhares | Schultz Energia Solar";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <SEO title={homeTitle} description="Energia solar em Linhares-ES para residências, empresas, propriedades rurais e indústrias. Projeto, instalação, homologação e suporte pela Schultz Energia Solar." path="/" schema={homeSchema(homeTitle)} />
+      <SEO title={homeTitle} description="Energia solar em Linhares-ES para residências, empresas e propriedades rurais. A Schultz Energia Solar oferece projeto, instalação e suporte com equipe própria." path="/" schema={homeSchema(homeTitle)} />
       <HeroSection />
       <BenefitsSection />
       <AboutSection />
