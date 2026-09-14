@@ -97,10 +97,6 @@ export function SimulatorSection() {
     window.open(`https://wa.me/5527998200026?text=${encodeURIComponent(message)}`, "_blank");
   };
   return <section id="simulador" className="section-padding bg-secondary relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-yellow-500/10 rounded-full blur-2xl" />
-
       <div className="container-max mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
@@ -114,11 +110,11 @@ export function SimulatorSection() {
             </h2>
             <p className="text-lg text-white/70 mb-8">
               Simule agora mesmo a economia que você terá ao instalar um sistema 
-              de energia solar. É rápido, fácil e sem compromisso.
+              de energia solar. O resultado é uma estimativa inicial, rápida e sem compromisso.
             </p>
 
             <div className="space-y-4 text-white/80">
-              {["Cálculo instantâneo e personalizado", "Estimativa de retorno do investimento", "Sem compromisso - totalmente gratuito"].map(item => <div key={item} className="flex items-center gap-3">
+              {["Estimativa inicial personalizada", "Estimativa de retorno do investimento", "Sem compromisso e totalmente gratuito"].map(item => <div key={item} className="flex items-center gap-3">
                   <div className="w-5 h-5 rounded-full bg-primary flex items-center justify-center">
                     <Zap className="h-3 w-3 text-white" />
                   </div>
@@ -184,7 +180,7 @@ export function SimulatorSection() {
                   </div>
 
                   {!showResults ? <Button variant="default" size="lg" className="w-full" onClick={handleCalculate} disabled={billNumber < 200}>
-                      Calcular Economia
+                      Calcule sua economia
                       <ArrowRight className="h-5 w-5" />
                     </Button> : <>
                       {/* Results */}
@@ -228,7 +224,7 @@ export function SimulatorSection() {
                       </div>
 
                       <Button variant="cta" size="lg" className="w-full" onClick={handleGetQuote}>
-                        Quero Meu Orçamento Grátis
+                        Quero receber uma proposta
                         <ArrowRight className="h-5 w-5" />
                       </Button>
                     </>}
@@ -240,10 +236,10 @@ export function SimulatorSection() {
                     <Zap className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="font-display text-xl font-bold text-secondary">
-                    Receba seu orçamento
+                    Receba uma proposta
                   </h3>
                   <p className="text-sm text-muted-foreground">
-                    Preencha seus dados para receber uma proposta personalizada
+                    Preencha seus dados para falar com a nossa equipe pelo WhatsApp
                   </p>
                 </div>
 
@@ -279,7 +275,7 @@ export function SimulatorSection() {
 
                 <div className="bg-muted/50 rounded-xl p-4">
                   <p className="text-sm text-muted-foreground">
-                    Sua economia estimada:{" "}
+                    Estimativa de economia mensal:{" "}
                     <span className="font-bold text-primary">
                       R$ {monthlySavings.toFixed(2)}/mês
                     </span>

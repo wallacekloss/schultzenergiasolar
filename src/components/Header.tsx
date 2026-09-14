@@ -1,30 +1,37 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logoSchultz from "@/assets/logo-schultz.png";
-const navLinks = [{
-  href: "#inicio",
-  label: "Início"
-}, {
-  href: "#sobre",
-  label: "Sobre"
-}, {
-  href: "#servicos",
-  label: "Serviços"
-}, {
-  href: "#simulador",
-  label: "Simulador"
-}, {
-  href: "#projetos",
-  label: "Projetos"
-}, {
-  href: "#depoimentos",
-  label: "Depoimentos"
-}, {
-  href: "#contato",
-  label: "Contato"
-}];
+import { Link, NavLink } from "react-router-dom";
+import { solutions, services } from "@/data/pages";
+import { COMPANY } from "@/data/company";
+
+const navLinks = [
+  { to: "/", label: "Início" },
+  { to: "/projetos/", label: "Projetos" },
+  { to: "/sobre/", label: "Sobre" },
+  { to: "/simulador/", label: "Simulador" },
+  { to: "/contato/", label: "Contato" },
+];
+
+function Dropdown({ label, items }: { label: string; items: typeof solutions }) {
+  return (
+    <div className="relative group">
+      <button className="flex items-center gap-1 text-sm text-foreground/80 group-hover:text-primary font-bold py-7" aria-haspopup="true">
+        {label}<ChevronDown className="h-4 w-4" />
+      </button>
+      <div className="absolute top-full left-1/2 -translate-x-1/2 w-72 bg-background border border-border shadow-medium rounded-lg p-2 invisible opacity-0 translate-y-2 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 transition-all">
+        {items.map((item) => (
+          <Link key={item.path} to={item.path} className="block px-4 py-3 rounded-md text-sm font-semibold text-foreground/80 hover:bg-muted hover:text-primary">
+            {item.navLabel}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -34,7 +41,6 @@ export function Header() {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       setIsScrolled(scrollY > 20);
-      // No mobile, esconde o header ao rolar
       setIsVisible(scrollY <= 20);
     };
     window.addEventListener("scroll", handleScroll);
@@ -48,44 +54,52 @@ export function Header() {
   )}>
       <div className="container-max mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a href="#inicio" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img src={logoSchultz} alt="Schultz Energia Solar" className="h-16 w-auto" />
-          </a>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map(link => <a key={link.href} href={link.href} className="text-sm text-foreground/80 hover:text-primary transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-primary after:transition-all after:duration-300 hover:after:w-full font-bold">
-                {link.label}
-              </a>)}
+          <nav className="hidden xl:flex items-center gap-6" aria-label="Navegação principal">
+            <NavLink to="/" className="text-sm text-foreground/80 hover:text-primary font-bold">Início</NavLink>
+            <Dropdown label="Soluções" items={solutions} />
+            <Dropdown label="Serviços" items={services} />
+            {navLinks.slice(1).map(link => (
+              <NavLink key={link.to} to={link.to} className={({ isActive }) => cn("text-sm hover:text-primary font-bold", isActive ? "text-primary" : "text-foreground/80")}>{link.label}</NavLink>
+            ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:flex items-center gap-4">
-            <a href="tel:+5527998200026" className="flex items-center gap-2 text-sm text-foreground/80 font-semibold">
+          <div className="hidden xl:flex items-center gap-3">
+            <a href={`tel:${COMPANY.phoneE164}`} className="flex items-center gap-2 text-sm text-foreground/80 font-semibold">
               <Phone className="h-4 w-4" />
-              (27) 99820-0026
+              {COMPANY.phoneDisplay}
             </a>
-            <Button variant="default" size="default" asChild>
-              <a href="#simulador">Simular Economia</a>
+            <Button size="default" asChild>
+              <Link to="/simulador/">Simular economia</Link>
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2 text-foreground" aria-label="Menu">
+          <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="xl:hidden" aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMobileMenuOpen}>
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          </Button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div className={cn("lg:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-hidden shadow-lg", isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0")}>
-        <nav className="container-max mx-auto px-4 py-6 flex flex-col gap-4">
-          {navLinks.map(link => <a key={link.href} href={link.href} onClick={() => setIsMobileMenuOpen(false)} className="text-base font-medium text-foreground/80 hover:text-primary transition-colors py-2">
-              {link.label}
-            </a>)}
-          <Button variant="default" className="mt-4 w-full" asChild>
-            <a href="#simulador" onClick={() => setIsMobileMenuOpen(false)}>Simular Economia</a>
+      <div className={cn("xl:hidden absolute top-full left-0 right-0 bg-background border-b border-border transition-all duration-300 overflow-y-auto shadow-lg", isMobileMenuOpen ? "max-h-[calc(100vh-5rem)] opacity-100" : "max-h-0 opacity-0")}>
+        <nav className="container-max mx-auto px-4 py-5" aria-label="Navegação móvel">
+          <div className="grid sm:grid-cols-2 gap-x-8">
+            <div>
+              <p className="text-xs uppercase font-bold text-primary mt-2 mb-2">Soluções</p>
+              {solutions.map(item => <Link key={item.path} to={item.path} onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm font-semibold">{item.navLabel}</Link>)}
+            </div>
+            <div>
+              <p className="text-xs uppercase font-bold text-primary mt-2 mb-2">Serviços</p>
+              {services.map(item => <Link key={item.path} to={item.path} onClick={() => setIsMobileMenuOpen(false)} className="block py-2 text-sm font-semibold">{item.navLabel}</Link>)}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-2 border-t border-border mt-4 pt-4">
+            {navLinks.map(link => <Link key={link.to} to={link.to} onClick={() => setIsMobileMenuOpen(false)} className="py-2 font-semibold">{link.label}</Link>)}
+          </div>
+          <Button className="mt-4 w-full" asChild>
+            <Link to="/simulador/" onClick={() => setIsMobileMenuOpen(false)}>Simular economia</Link>
           </Button>
         </nav>
       </div>

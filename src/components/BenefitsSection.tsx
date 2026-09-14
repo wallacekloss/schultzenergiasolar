@@ -1,77 +1,14 @@
-import { TrendingDown, Leaf, Home, Sun, Shield, Zap } from "lucide-react";
+import { BadgeCheck, HeadphonesIcon, Monitor, ShieldCheck, Sun, Users } from "lucide-react";
 
-const benefits = [
-  {
-    icon: TrendingDown,
-    title: "Economia de até 95%",
-    description: "Reduza drasticamente sua conta de luz desde o primeiro mês de instalação.",
-  },
-  {
-    icon: Leaf,
-    title: "Energia 100% Limpa",
-    description: "Contribua com o meio ambiente utilizando energia renovável e sustentável.",
-  },
-  {
-    icon: Home,
-    title: "Valorização do Imóvel",
-    description: "Imóveis com energia solar podem valorizar até 8% no mercado imobiliário.",
-  },
-  {
-    icon: Shield,
-    title: "Garantia de 25 Anos",
-    description: "Painéis solares com garantia estendida e vida útil superior a 30 anos.",
-  },
-  {
-    icon: Zap,
-    title: "Retorno Garantido",
-    description: "Payback do investimento entre 3 a 5 anos com economia constante.",
-  },
-  {
-    icon: Sun,
-    title: "Independência Energética",
-    description: "Produza sua própria energia e fique livre dos aumentos tarifários.",
-  },
+const items = [
+  { icon: Sun, title: "Até 90% de economia", text: "Reduza o peso da conta de luz com geração própria dimensionada para o seu consumo." },
+  { icon: Users, title: "Equipe própria", text: "Projeto e instalação executados por quem assume a responsabilidade pela entrega." },
+  { icon: ShieldCheck, title: "Garantia de instalação", text: "Segurança na execução e suporte caso algo precise de atenção depois da entrega." },
+  { icon: Monitor, title: "Monitoramento", text: "Acompanhe a geração e identifique rapidamente qualquer queda de desempenho." },
+  { icon: HeadphonesIcon, title: "Pós-venda", text: "Nosso relacionamento continua depois que o sistema começa a gerar energia." },
+  { icon: BadgeCheck, title: "Certificações", text: "Equipe preparada e processos seguros para sistemas residenciais, comerciais e rurais." },
 ];
 
 export function BenefitsSection() {
-  return (
-    <section className="section-padding bg-muted/50">
-      <div className="container-max mx-auto">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-block text-sm font-semibold text-primary uppercase tracking-wider mb-4">
-            Benefícios
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-secondary mb-6">
-            Por que escolher energia solar?
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Descubra as vantagens de investir em um sistema fotovoltaico para 
-            sua residência ou empresa.
-          </p>
-        </div>
-
-        {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {benefits.map((benefit, index) => (
-            <div
-              key={benefit.title}
-              className="group bg-background rounded-2xl p-8 shadow-card hover:shadow-medium transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-primary/20"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
-                <benefit.icon className="h-7 w-7 text-primary group-hover:text-primary-foreground transition-colors" />
-              </div>
-              <h3 className="font-display text-xl font-bold text-secondary mb-3">
-                {benefit.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {benefit.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
+  return <section className="section-padding bg-muted/40"><div className="container-max mx-auto"><div className="max-w-3xl mb-12"><p className="text-primary uppercase font-bold text-sm mb-3">Benefícios</p><h2 className="font-display text-3xl md:text-5xl font-bold text-secondary mb-5">Energia solar com economia, segurança e acompanhamento</h2><p className="text-lg text-muted-foreground">Mais do que instalar placas: entregamos uma solução completa para você gerar sua própria energia com tranquilidade.</p></div><div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">{items.map(({ icon: Icon, title, text }) => <article key={title} className="bg-background border border-border p-6 rounded-lg"><Icon className="h-7 w-7 text-primary mb-4" /><h3 className="font-display text-xl font-bold text-secondary mb-2">{title}</h3><p className="text-muted-foreground leading-relaxed">{text}</p></article>)}</div></div></section>;
 }
