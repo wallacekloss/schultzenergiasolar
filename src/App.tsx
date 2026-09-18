@@ -13,6 +13,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import SimulatorPage from "./pages/SimulatorPage";
 import BlogPage from "./pages/BlogPage";
+import SolarEnergyLinharesArticlePage from "./pages/SolarEnergyLinharesArticlePage";
 import { allContentPages } from "./data/pages";
 import AdminPage from "./pages/AdminPage";
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/contato/" element={<ContactPage />} />
             <Route path="/simulador/" element={<SimulatorPage />} />
             <Route path="/blog/" element={<BlogPage />} />
+            <Route path="/blog/como-funciona-energia-solar-em-linhares/" element={<SolarEnergyLinharesArticlePage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
