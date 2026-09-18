@@ -31,3 +31,9 @@
 - [x] Remover a rota genérica e preservar todas as rotas públicas válidas
 - [x] Auditar schemas, metadados, sitemap, robots, imagens e links internos
 - [x] Validar build, rotas públicas e página 404
+
+## Conteúdo para SEO local
+
+- [x] Publicar o artigo “Como funciona a energia solar em Linhares?”
+- [x] Ligar o artigo às páginas residencial, comercial, rural, projetos e simulador
+- [x] Adicionar a nova página ao blog, às rotas e ao sitemap
